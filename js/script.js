@@ -3,7 +3,7 @@ const gameBoard = (() => {
     const spaces = [];
     const startGame = (spaces) => {
         for (i = 0; i < 9; i++) {
-            spaces.push("O");
+            spaces.push("X");
             let newSpace = spaces[i]; 
         }
     }
@@ -33,7 +33,6 @@ gameHeader.appendChild(headContent);
 
 const gameContainer = elementBuilder("div", "game-container", body);
 
-
 function renderDisplay(board, parent) {
     //this function will generate the elements based on the values in board object
     board.startGame(board.spaces);
@@ -41,7 +40,7 @@ function renderDisplay(board, parent) {
     for (i = 0; i < board.spaces.length; i++) {
         if (board.spaces[i] === null) {
             let blankElement = elementBuilder("div", "space", parent);
-
+            blankElement.setAttribute("id", "blank");
         } else if (board.spaces[i] === 'X') {
             let xElement = elementBuilder("div", "space", parent);
             xElement.setAttribute("id", "x");
