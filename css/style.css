@@ -1,3 +1,7 @@
+body {
+    display: flex;
+    justify-content: center;
+}
 .game-container {
     border: dotted 3px black;
     width: 500px;
