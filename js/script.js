@@ -29,14 +29,13 @@ const body = document.getElementsByTagName("body")[0];
 function renderDisplay(board, parent) {
     //this function will generate the elements based on the values in board object
     board.startGame(board.spaces);
-    for (i = 0; i < board.spaces; i++) {
+    for (i = 0; i < board.spaces.length; i++) {
         if (board.spaces[i] === null) {
             let blankElement = elementBuilder("div", "space", parent);
             blankElement.setAttribute("id", "blank");
         } else if (board.spaces[i] === 'X') {
             let xElement = elementBuilder("div", "space", parent);
             xElement.setAttribute("id", "x");
-
         } else if (board.spaces[i] === "O") {
             let oElement = elementBuilder("div", "space", parent);
             oElement.setAttribute("id", "o");
