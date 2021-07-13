@@ -4,6 +4,7 @@ const gameBoard = (() => {
     const startGame = (spaces) => {
         for (i = 0; i < 9; i++) {
             spaces.push(null);
+            let newSpace = spaces[i];
         }
     }
     return {spaces, startGame};

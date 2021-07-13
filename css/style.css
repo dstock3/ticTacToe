@@ -2,8 +2,17 @@ body {
     display: flex;
     justify-content: center;
 }
+
 .game-container {
+    display: flex;
+    flex-wrap: wrap;
     border: dotted 3px black;
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
+}
+
+.space {
+    width: 196px;
+    height: 196px;
+    border: solid blue 2px;
 }
