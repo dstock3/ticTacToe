@@ -1,4 +1,5 @@
 const gameBoard = () => {
+    //this object will hold the values for each space
     spaces: [topLeft, topMiddle, topRight, midLeft, center, midRight, bottomLeft, bottomMiddle, bottomRight];
     const startGame = (spaces) => {
         for (i = 0; i < spaces.length; i++) {
@@ -10,6 +11,7 @@ const gameBoard = () => {
 gameBoard.startGame(gameBoard.spaces);
 
 const player = () => {
+    //the player object prototype will contain methods to change values in board object
 
 };
 
@@ -26,6 +28,7 @@ function elementBuilder (elType, className, parent) {
 const body = document.getElementsByTagName("body")[0];
 
 function renderDisplay(board, parent) {
+    //this function will generate the elements based on the values in board object
     let spaces = board.spaces;
     for (i = 0; i < spaces.length; i++) {
         if (spaces[i] === null) {
