@@ -12,6 +12,8 @@ body {
 }
 
 .space {
+    font-size: 5em;
+    text-align: center;
     width: 196px;
     height: 196px;
     border: solid blue 2px;

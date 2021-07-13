@@ -3,8 +3,8 @@ const gameBoard = (() => {
     const spaces = [];
     const startGame = (spaces) => {
         for (i = 0; i < 9; i++) {
-            spaces.push(null);
-            let newSpace = spaces[i];
+            spaces.push("O");
+            let newSpace = spaces[i]; 
         }
     }
     return {spaces, startGame};
@@ -38,9 +38,13 @@ function renderDisplay(board, parent) {
         } else if (board.spaces[i] === 'X') {
             let xElement = elementBuilder("div", "space", parent);
             xElement.setAttribute("id", "x");
+            let xContent = document.createTextNode("X");
+            xElement.appendChild(xContent);
         } else if (board.spaces[i] === "O") {
             let oElement = elementBuilder("div", "space", parent);
             oElement.setAttribute("id", "o");
+            let oContent = document.createTextNode("O");
+            oElement.appendChild(oContent);
         };
     };
 };
