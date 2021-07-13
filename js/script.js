@@ -25,6 +25,7 @@ function elementBuilder (elType, className, parent) {
 };
 
 const body = document.getElementsByTagName("body")[0];
+const gameContainer = elementBuilder("div", "game-container", body);
 
 function renderDisplay(board, parent) {
     //this function will generate the elements based on the values in board object
@@ -39,8 +40,8 @@ function renderDisplay(board, parent) {
         } else if (board.spaces[i] === "O") {
             let oElement = elementBuilder("div", "space", parent);
             oElement.setAttribute("id", "o");
-        }
+        };
     };
 };
 
-renderDisplay(gameBoard, body);
+renderDisplay(gameBoard, gameContainer);
