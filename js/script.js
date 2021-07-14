@@ -3,11 +3,22 @@ const gameBoard = (() => {
     const spaces = [];
     const startGame = (spaces) => {
         for (i = 0; i < 9; i++) {
-            spaces.push("X");
+            spaces.push(null);
             let newSpace = spaces[i]; 
         }
     }
-    return {spaces, startGame};
+
+    const firstPosition = (spaces) => {
+        for (i = 0; i < 9; i++) {
+            if (i === 0) {
+                spaces.push("X");
+            } else {
+                spaces.push(null);
+            }
+        }
+    }
+
+    return {spaces, startGame, firstPosition};
 })();
 
 const player = (name) => {
