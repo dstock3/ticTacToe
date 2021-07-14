@@ -13,8 +13,8 @@ body {
 .game-container {
     display: flex;
     flex-wrap: wrap;
-    width: 600px;
-    height: 600px;
+    width: 550px;
+    height: 550px;
 }
 
 .space {
@@ -23,8 +23,8 @@ body {
     align-items: center;
     font-size: 5em;
     text-align: center;
-    width: 196px;
-    height: 196px;
+    width: 180px;
+    height: 180px;
 }
 
 #position-0 {
