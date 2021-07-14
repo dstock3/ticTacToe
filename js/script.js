@@ -69,15 +69,18 @@ function renderDisplay(board, parent) {
 };
 
 const gameFlow = (board) => {
-    for (i = 0; i < board.spaces.length; i++) {
-        let space = document.getElementById(`position-${i}`);
-        space.addEventListener('click', () => {
+    const move = (board) => {
+        for (i = 0; i < board.spaces.length; i++) {
+            let space = document.getElementById(`position-${i}`);
+            space.addEventListener('click', () => {
+                let xContent = document.createTextNode("X");
+                space.appendChild(xContent);
+            });
+        };
+    };
 
-          });
-    }
-
-    
-
+    return {move}
 };
 
 renderDisplay(gameBoard, gameContainer);
+gameFlow.move(gameBoard)
