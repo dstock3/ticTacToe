@@ -47,21 +47,28 @@ const gameContainer = elementBuilder("div", "game-container", body);
 function renderDisplay(board, parent) {
     //this function will generate the elements based on the values in board object
     board.startGame(board.spaces);
-
     for (i = 0; i < board.spaces.length; i++) {
-        if (board.spaces[i] === null) {
-            let blankElement = elementBuilder("div", "space", parent);
-            blankElement.setAttribute("id", "blank");
-        } else if (board.spaces[i] === 'X') {
-            let xElement = elementBuilder("div", "space", parent);
-            xElement.setAttribute("id", "x");
-            let xContent = document.createTextNode("X");
-            xElement.appendChild(xContent);
-        } else if (board.spaces[i] === "O") {
-            let oElement = elementBuilder("div", "space", parent);
-            oElement.setAttribute("id", "o");
-            let oContent = document.createTextNode("O");
-            oElement.appendChild(oContent);
+        if (i < 9) {
+            let spaceElement = elementBuilder("div", "space", parent);
+            spaceElement.setAttribute("id", `position-${i}`);
+            
+            if (board.spaces[i] === null) {
+            
+                spaceElement.classList.add("blank");
+                //blankElement.setAttribute("id", "blank");
+            } else if (board.spaces[i] === 'X') {
+                
+                //xElement.setAttribute("id", "x");
+                let xContent = document.createTextNode("X");
+                spaceElement.appendChild(xContent);
+                spaceElement.classList.add("x");
+            } else if (board.spaces[i] === "O") {
+                
+                //oElement.setAttribute("id", "o");
+                let oContent = document.createTextNode("O");
+                spaceElement.appendChild(oContent);
+                spaceElement.classList.add("o");
+            };  
         };
     };
 };
