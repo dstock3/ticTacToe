@@ -68,19 +68,17 @@ function renderDisplay(board, parent) {
     };
 };
 
-const gameFlow = (board) => {
-    const move = (board) => {
-        for (i = 0; i < board.spaces.length; i++) {
-            let space = document.getElementById(`position-${i}`);
-            space.addEventListener('click', () => {
-                let xContent = document.createTextNode("X");
-                space.appendChild(xContent);
-            });
-        };
-    };
+const gameFlow = (board, parent) => {
+    for (i = 0; i < board.spaces.length; i++) {
+        let space = document.getElementById(`position-${i}`);
+        space.addEventListener('click', () => {
+            board.spaces[i] = "X";
+        });
 
-    return {move}
+    };
+    //parent.childNodes.remove();
+    renderDisplay(board, parent)
 };
 
 renderDisplay(gameBoard, gameContainer);
-gameFlow.move(gameBoard)
+gameFlow(gameBoard, gameContainer);
