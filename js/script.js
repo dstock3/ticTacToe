@@ -53,18 +53,13 @@ function renderDisplay(board, parent) {
             spaceElement.setAttribute("id", `position-${i}`);
             
             if (board.spaces[i] === null) {
-            
                 spaceElement.classList.add("blank");
-                //blankElement.setAttribute("id", "blank");
-            } else if (board.spaces[i] === 'X') {
                 
-                //xElement.setAttribute("id", "x");
+            } else if (board.spaces[i] === 'X') {
                 let xContent = document.createTextNode("X");
                 spaceElement.appendChild(xContent);
                 spaceElement.classList.add("x");
             } else if (board.spaces[i] === "O") {
-                
-                //oElement.setAttribute("id", "o");
                 let oContent = document.createTextNode("O");
                 spaceElement.appendChild(oContent);
                 spaceElement.classList.add("o");

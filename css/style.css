@@ -5,10 +5,14 @@ body {
     align-items: center;
 }
 
+.head {
+    font-size: 3em;
+    padding-bottom: 5%;
+}
+
 .game-container {
     display: flex;
     flex-wrap: wrap;
-    border: dotted 3px black;
     width: 600px;
     height: 600px;
 }
@@ -21,5 +25,40 @@ body {
     text-align: center;
     width: 196px;
     height: 196px;
-    border: solid blue 2px;
+}
+
+#position-0 {
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+}
+
+#position-1 {
+    border-bottom: 5px solid black;
+}
+
+#position-2 {
+    border-bottom: 5px solid black;
+    border-left: 5px solid black;
+}
+
+#position-3 {
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+}
+
+#position-4 {
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+}
+
+#position-5 {
+    border-bottom: 5px solid black;
+}
+
+#position-6 {
+    border-right: 5px solid black;
+}
+
+#position-7 {
+    border-right: 5px solid black;
 }
