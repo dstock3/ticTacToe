@@ -68,17 +68,14 @@ function renderDisplay(board, parent) {
     };
 };
 
-const gameFlow = (board, parent) => {
+const gameFlow = (board) => {
     for (i = 0; i < board.spaces.length; i++) {
         let space = document.getElementById(`position-${i}`);
         space.addEventListener('click', () => {
-            board.spaces[i] = "X";
+            board.spaces.splice(i, 1, "X");
         });
-
     };
-    //parent.childNodes.remove();
-    renderDisplay(board, parent)
 };
 
 renderDisplay(gameBoard, gameContainer);
-gameFlow(gameBoard, gameContainer);
+gameFlow(gameBoard);
