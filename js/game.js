@@ -111,41 +111,41 @@ function win(array, boardPiece) {
     console.log(boardArray)
 
     for (i = 0; i < array.length; i++) {
-        if (boardArray === [0, 1, 2]) {
+        if (JSON.stringify(boardArray) == JSON.stringify([0, 1, 2])) {
             return true;
-        } else if (boardArray === [0, 4, 8]) {
+        } else if (JSON.stringify(boardArray) === JSON.stringify([0, 4, 8])) {
             return true;
-        } else if (boardArray === [1, 4, 7]) {
+        } else if (JSON.stringify(boardArray) === JSON.stringify([1, 4, 7])) {
             return true;
-        } else if (boardArray === [2, 4, 6]) {
+        } else if (JSON.stringify(boardArray) === JSON.stringify([2, 4, 6])) {
             return true;
-        } else if (boardArray === [2, 5, 8]) {
+        } else if (JSON.stringify(boardArray) === JSON.stringify([2, 5, 8])) {
             return true;
-        } else if (boardArray === [3, 4, 5]) {
+        } else if (JSON.stringify(boardArray) === JSON.stringify([3, 4, 5])) {
             return true;
-        } else if (boardArray === [6, 7, 8]) {
+        } else if (JSON.stringify(boardArray) === JSON.stringify([6, 7, 8])) {
             return true;
         };
     };
-    return [boardArray, win]
+    return win
 }
-
-const spaces = [
-    "Y", //position-0 top left
-    "Y", //position-1 top middle
-    "Y", //position-2 top right
-    null, //position-3 mid left
-    null, //position-4 mid middle
-    null, //position-5 mid right 
-    null, //position-6 bottom left
-    null, //position-7 bottom middle
-    null  //position-8 bottom right
-]; 
 
 const X = "X";
 const Y = "Y";
 
-const winningMove = win(spaces, Y);
+const spaces = [
+    null, //position-0 top left
+    null, //position-1 top middle
+    X, //position-2 top right
+    null, //position-3 mid left
+    X, //position-4 mid middle
+    null, //position-5 mid right 
+    X, //position-6 bottom left
+    null, //position-7 bottom middle
+    null  //position-8 bottom right
+]; 
+
+const winningMove = win(spaces, X);
 console.log(winningMove);
 
 
