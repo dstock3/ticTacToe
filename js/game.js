@@ -101,10 +101,10 @@ winning positions:
 function win(array, boardPiece) {
     let win = false; //win is set to false by default
     let boardArray = [];
-    for (y = 0; y < array.length; y++) {
+    for (i = 0; i < array.length; i++) {
         
-        if (array[y] === boardPiece) {
-            boardArray.push(y)
+        if (array[i] === boardPiece) {
+            boardArray.push(i)
         };
     };
     console.log(boardArray)
