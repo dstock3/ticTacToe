@@ -1,3 +1,5 @@
+
+/*
 //Basic HTML Elements
 function elementBuilder (elType, className, parent) {
     const newElement = document.createElement(elType);
@@ -85,7 +87,6 @@ const flow = (blankSpaces) => {
 
 const gameFlow = flow(board, gameBoard.spaces);
 
-/*
 winning positions: 
 0, 1, 2
 0, 4, 8
@@ -94,6 +95,58 @@ winning positions:
 2, 5, 8
 3, 4, 5
 6, 7, 8
-
 */
+
+let spaces = [
+    "X", //position-0 top left
+    "X", //position-1 top middle
+    "X", //position-2 top right
+    null, //position-3 mid left
+    null, //position-4 mid middle
+    null, //position-5 mid right 
+    null, //position-6 bottom left
+    null, //position-7 bottom middle
+    null  //position-8 bottom right
+]; 
+
+function win(array, boardPiece) {
+    let win = false; //win is set to false by default
+    for (i = 0; i < array.length; i++) {
+        for (y = 0; y < array.length; i++) {
+            let boardArray = [];
+            if (array[y] === boardPiece) {
+                boardArray.push(y)
+            };
+        };
+        
+        if (boardArray === [0, 1, 2]) {
+            win = true;
+            return win
+        } else if (boardArray === [0, 4, 8]) {
+            win = true;
+            return win
+        } else if (boardArray === [1, 4, 7]) {
+            win = true;
+            return win
+        } else if (boardArray === [2, 4, 6]) {
+            win = true;
+            return win
+        } else if (boardArray === [2, 5, 8]) {
+            win = true;
+            return win
+        } else if (boardArray === [3, 4, 5]) {
+            win = true;
+            return win
+        } else if (boardArray === [6, 7, 8]) {
+            win = true;
+            return win
+        };
+    };
+    return win
+}
+
+const winningMove = win(spaces, "X")
+console.log(winningMove);
+
+
 
