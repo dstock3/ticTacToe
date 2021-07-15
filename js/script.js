@@ -8,17 +8,14 @@ const gameBoard = (() => {
         }
     }
 
-    const firstPosition = (spaces) => {
-        for (i = 0; i < 9; i++) {
-            if (i === 0) {
-                spaces.push("X");
-            } else {
-                spaces.push(null);
+    const move = (spaces, movePosition) => {
+        for (i = 0; i < spaces.length; i++) {
+            if (movePosition === i) {
+                spaces.splice(i, 1, "X");
             }
         }
-    }
-
-    return {spaces, startGame, firstPosition};
+    } 
+    return {spaces, startGame, move};
 })();
 
 const player = (name) => {
@@ -68,14 +65,16 @@ function renderDisplay(board, parent) {
     };
 };
 
-const gameFlow = (board) => {
+const gameFlow = (board, parent) => {
     for (i = 0; i < board.spaces.length; i++) {
         let space = document.getElementById(`position-${i}`);
         space.addEventListener('click', () => {
-            board.spaces.splice(i, 1, "X");
+            parent.remove();
+            board.move(board.spaces, i);
+            renderDisplay(board, parent);
         });
     };
 };
 
-renderDisplay(gameBoard, gameContainer);
-gameFlow(gameBoard);
+const render = renderDisplay(gameBoard, gameContainer);
+const flow = gameFlow(gameBoard, gameContainer);
