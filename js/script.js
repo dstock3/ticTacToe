@@ -4,8 +4,8 @@ const gameBoard = (() => {
     const startGame = (spaces) => {
         for (i = 0; i < 9; i++) {
             spaces.push(null);
-            let newSpace = spaces[i]; 
         }
+        return spaces
     }
 
     /*
@@ -78,6 +78,7 @@ const gameFlow = (board, display) => {
     for (i = 0; i < board.spaces.length; i++) {
         let space = document.getElementById(`position-${i}`);
         space.addEventListener('click', () => {
+            board.spaces[i] = "X";
         });
     };
 };
