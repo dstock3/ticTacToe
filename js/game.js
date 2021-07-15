@@ -97,27 +97,18 @@ winning positions:
 6, 7, 8
 */
 
-let spaces = [
-    "X", //position-0 top left
-    "X", //position-1 top middle
-    "X", //position-2 top right
-    null, //position-3 mid left
-    null, //position-4 mid middle
-    null, //position-5 mid right 
-    null, //position-6 bottom left
-    null, //position-7 bottom middle
-    null  //position-8 bottom right
-]; 
+
 
 function win(array, boardPiece) {
     let win = false; //win is set to false by default
     for (i = 0; i < array.length; i++) {
-        for (y = 0; y < array.length; i++) {
-            let boardArray = [];
+        for (y = 0; y < array.length; y++) {
+            var boardArray = [];
             if (array[y] === boardPiece) {
                 boardArray.push(y)
             };
         };
+        console.log(boardArray)
         
         if (boardArray === [0, 1, 2]) {
             win = true;
@@ -145,8 +136,26 @@ function win(array, boardPiece) {
     return win
 }
 
-const winningMove = win(spaces, "X")
+const spaces = [
+    "X", //position-0 top left
+    "X", //position-1 top middle
+    "X", //position-2 top right
+    null, //position-3 mid left
+    null, //position-4 mid middle
+    null, //position-5 mid right 
+    null, //position-6 bottom left
+    null, //position-7 bottom middle
+    null  //position-8 bottom right
+]; 
+
+const X = "X";
+const Y = "Y";
+
+const winningMove = win(spaces, X);
 console.log(winningMove);
+
+
+
 
 
 
