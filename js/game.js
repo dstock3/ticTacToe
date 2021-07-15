@@ -14,9 +14,11 @@ const gameContainer = elementBuilder("div", "game-container", body);
 
 //Gameboard Setup
 
-let spaces = [null, null, null, null, null, null, null, null, null];
+let spaces = [null, null, null, null, null, null, null, null, null]; 
+//for the initial game values
 
 const spaceValues = (spaceArray) => {
+    //This function will manipulate values based on the spaceArray that is passed to it.
     const spaceMove = (spaceArray, spacePosition, spaceValue) => {
         for (i = 0; i < spaceArray.length; i++) {
             if (spacePosition === i) {
