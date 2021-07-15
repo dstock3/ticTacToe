@@ -1,5 +1,3 @@
-
-/*
 //Basic HTML Elements
 function elementBuilder (elType, className, parent) {
     const newElement = document.createElement(elType);
@@ -87,6 +85,7 @@ const flow = (blankSpaces) => {
 
 const gameFlow = flow(board, gameBoard.spaces);
 
+/*
 winning positions: 
 0, 1, 2
 0, 4, 8
@@ -95,7 +94,7 @@ winning positions:
 2, 5, 8
 3, 4, 5
 6, 7, 8
-*/
+
 
 
 
@@ -111,7 +110,7 @@ function win(array, boardPiece) {
     console.log(boardArray)
 
     for (i = 0; i < array.length; i++) {
-        if (JSON.stringify(boardArray) == JSON.stringify([0, 1, 2])) {
+        if (JSON.stringify(boardArray) === JSON.stringify([0, 1, 2])) {
             return true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([0, 4, 8])) {
             return true;
@@ -136,17 +135,19 @@ const Y = "Y";
 const spaces = [
     null, //position-0 top left
     null, //position-1 top middle
-    X, //position-2 top right
+    null, //position-2 top right
     null, //position-3 mid left
-    X, //position-4 mid middle
+    null, //position-4 mid middle
     null, //position-5 mid right 
-    X, //position-6 bottom left
+    null, //position-6 bottom left
     null, //position-7 bottom middle
     null  //position-8 bottom right
 ]; 
 
 const winningMove = win(spaces, X);
 console.log(winningMove);
+
+*/
 
 
 
