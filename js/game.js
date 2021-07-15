@@ -17,7 +17,7 @@ const gameContainer = elementBuilder("div", "game-container", body);
 let spaces = [null, null, null, null, null, null, null, null, null]; 
 //for the initial game values
 
-const spaceValues = (spaceArray) => {
+const spaceValues = ((spaceArray) => {
     //This function will manipulate values based on the spaceArray that is passed to it.
     const spaceMove = (spaceArray, spacePosition, spaceValue) => {
         for (i = 0; i < spaceArray.length; i++) {
@@ -28,7 +28,7 @@ const spaceValues = (spaceArray) => {
         return spaceArray
     };
     return {spaceMove}
-};
+})();
 
 const gameBoard = ((gameSpaces) => {
     const game = (gameSpaces, parent) => {
@@ -58,8 +58,8 @@ const gameBoard = ((gameSpaces) => {
 
 const board = gameBoard.game(spaces, gameContainer);
 
-const flow = (initialBoard, blankSpaces) => {
-    let newBoard = blankSpaces;
+const flow = (blankSpaces) => {
+    let newBoard = blankSpaces; //creates a new array based on the values from the initial array
     const boardEvents = () => {
         for (i = 0; i < newBoard.length; i++) {
             let space = newBoard[i];

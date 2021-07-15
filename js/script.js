@@ -55,7 +55,14 @@ const renderDisplay = (board, parent) => {
             spaceElement.setAttribute("id", `position-${i}`);
             if (board.spaces[i] === null) {
                 spaceElement.classList.add("blank");
+    
+                spaceElement.addEventListener('click', () => {
+                    
+            
+                });
+
                 spaceArray.push(spaceElement);
+
             } else if (board.spaces[i] === 'X') {
                 let xContent = document.createTextNode("X");
                 spaceElement.appendChild(xContent);
