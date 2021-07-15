@@ -48,23 +48,26 @@ const gameContainer = elementBuilder("div", "game-container", body);
 function renderDisplay(board, parent) {
     //this function will generate the elements based on the values in board object
     board.startGame(board.spaces);
+    let spaceArray = [];
     for (i = 0; i < board.spaces.length; i++) {
-        let spaceArray = [];
         if (i < 9) {
             let spaceElement = elementBuilder("div", "space", parent);
             spaceElement.setAttribute("id", `position-${i}`);
             if (board.spaces[i] === null) {
                 spaceElement.classList.add("blank");
+                spaceArray.push(spaceElement);
             } else if (board.spaces[i] === 'X') {
                 let xContent = document.createTextNode("X");
                 spaceElement.appendChild(xContent);
                 spaceElement.classList.add("x");
+                spaceArray.push(spaceElement);
             } else if (board.spaces[i] === "O") {
                 let oContent = document.createTextNode("O");
                 spaceElement.appendChild(oContent);
                 spaceElement.classList.add("o");
+                spaceArray.push(spaceElement);
             }; 
-            spaceArray.push(spaceElement);
+            
         };
 
     };
