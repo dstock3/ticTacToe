@@ -8,17 +8,15 @@ function elementBuilder (elType, className, parent) {
 };
 
 const body = document.getElementsByTagName("body")[0];
-
 const gameHeader = elementBuilder("h1", "head", body);
 const headContent = document.createTextNode("Tic Tac Toe!");
 gameHeader.appendChild(headContent);
-
 const gameContainer = elementBuilder("div", "game-container", body);
 
 //Module to build game logic
 
 const gameBoard = (() => {
-    //this object will hold the values for each space
+    //this module will hold the values for each space
     const spaces = [];
     const startGame = (spaces) => {
         for (i = 0; i < 9; i++) {
@@ -26,7 +24,6 @@ const gameBoard = (() => {
         }
     }
 
-    /*
     const move = (spaces, movePosition) => {
         for (i = 0; i < spaces.length; i++) {
             if (movePosition === i) {
@@ -36,8 +33,8 @@ const gameBoard = (() => {
             }
         }
     }
-    */ 
-    return {spaces, startGame};
+
+    return {spaces, startGame, move};
 })();
 
 const player = (name) => {
@@ -48,9 +45,9 @@ const player = (name) => {
 const playerOne = player(); 
 const playerTwo = player();
 
-function renderDisplay(board, parent) {
+const renderDisplay = (board, parent) => {
     //this function will generate the elements based on the values in board object
-    board.startGame(board.spaces);
+    const renderBoard = board.startGame(board.spaces);
     let spaceArray = [];
     for (i = 0; i < board.spaces.length; i++) {
         if (i < 9) {
@@ -74,7 +71,7 @@ function renderDisplay(board, parent) {
         };
 
     };
-    return spaceArray
+    return {spaceArray}
 };
 
 //Factory function to build gameFlow object to direct sequence of moves
@@ -83,7 +80,7 @@ const gameFlow = (board, display) => {
     for (i = 0; i < board.spaces.length; i++) {
         let space = document.getElementById(`position-${i}`);
         space.addEventListener('click', () => {
-            board.spaces[i] = "X";
+            
         });
     };
 };
