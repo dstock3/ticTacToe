@@ -8,14 +8,18 @@ const gameBoard = (() => {
         }
     }
 
+    /*
     const move = (spaces, movePosition) => {
         for (i = 0; i < spaces.length; i++) {
             if (movePosition === i) {
                 spaces.splice(i, 1, "X");
+            } else {
+                spaces.push(null);
             }
         }
-    } 
-    return {spaces, startGame, move};
+    }
+    */ 
+    return {spaces, startGame};
 })();
 
 const player = (name) => {
@@ -65,16 +69,14 @@ function renderDisplay(board, parent) {
     };
 };
 
-const gameFlow = (board, parent) => {
+const gameFlow = (board) => {
     for (i = 0; i < board.spaces.length; i++) {
         let space = document.getElementById(`position-${i}`);
         space.addEventListener('click', () => {
-            parent.remove();
-            board.move(board.spaces, i);
-            renderDisplay(board, parent);
+            console.log(i);
         });
     };
 };
 
 const render = renderDisplay(gameBoard, gameContainer);
-const flow = gameFlow(gameBoard, gameContainer);
+const flow = gameFlow(gameBoard);
