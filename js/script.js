@@ -1,3 +1,22 @@
+
+//Basic HTML Elements
+function elementBuilder (elType, className, parent) {
+    const newElement = document.createElement(elType);
+    newElement.classList.add(className);
+    parent.appendChild(newElement);
+    return newElement;
+};
+
+const body = document.getElementsByTagName("body")[0];
+
+const gameHeader = elementBuilder("h1", "head", body);
+const headContent = document.createTextNode("Tic Tac Toe!");
+gameHeader.appendChild(headContent);
+
+const gameContainer = elementBuilder("div", "game-container", body);
+
+//Module to build game logic
+
 const gameBoard = (() => {
     //this object will hold the values for each space
     const spaces = [];
@@ -5,7 +24,6 @@ const gameBoard = (() => {
         for (i = 0; i < 9; i++) {
             spaces.push(null);
         }
-        return spaces
     }
 
     /*
@@ -29,21 +47,6 @@ const player = (name) => {
 
 const playerOne = player(); 
 const playerTwo = player();
-
-function elementBuilder (elType, className, parent) {
-    const newElement = document.createElement(elType);
-    newElement.classList.add(className);
-    parent.appendChild(newElement);
-    return newElement;
-};
-
-const body = document.getElementsByTagName("body")[0];
-
-const gameHeader = elementBuilder("h1", "head", body);
-const headContent = document.createTextNode("Tic Tac Toe!");
-gameHeader.appendChild(headContent);
-
-const gameContainer = elementBuilder("div", "game-container", body);
 
 function renderDisplay(board, parent) {
     //this function will generate the elements based on the values in board object
@@ -73,6 +76,8 @@ function renderDisplay(board, parent) {
     };
     return spaceArray
 };
+
+//Factory function to build gameFlow object to direct sequence of moves
 
 const gameFlow = (board, display) => {
     for (i = 0; i < board.spaces.length; i++) {
