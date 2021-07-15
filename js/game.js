@@ -101,45 +101,39 @@ winning positions:
 
 function win(array, boardPiece) {
     let win = false; //win is set to false by default
-    for (i = 0; i < array.length; i++) {
-        for (y = 0; y < array.length; y++) {
-            var boardArray = [];
-            if (array[y] === boardPiece) {
-                boardArray.push(y)
-            };
-        };
-        console.log(boardArray)
+    let boardArray = [];
+    for (y = 0; y < array.length; y++) {
         
-        if (boardArray === [0, 1, 2]) {
-            win = true;
-            return win
-        } else if (boardArray === [0, 4, 8]) {
-            win = true;
-            return win
-        } else if (boardArray === [1, 4, 7]) {
-            win = true;
-            return win
-        } else if (boardArray === [2, 4, 6]) {
-            win = true;
-            return win
-        } else if (boardArray === [2, 5, 8]) {
-            win = true;
-            return win
-        } else if (boardArray === [3, 4, 5]) {
-            win = true;
-            return win
-        } else if (boardArray === [6, 7, 8]) {
-            win = true;
-            return win
+        if (array[y] === boardPiece) {
+            boardArray.push(y)
         };
     };
-    return win
+    console.log(boardArray)
+
+    for (i = 0; i < array.length; i++) {
+        if (boardArray === [0, 1, 2]) {
+            return true;
+        } else if (boardArray === [0, 4, 8]) {
+            return true;
+        } else if (boardArray === [1, 4, 7]) {
+            return true;
+        } else if (boardArray === [2, 4, 6]) {
+            return true;
+        } else if (boardArray === [2, 5, 8]) {
+            return true;
+        } else if (boardArray === [3, 4, 5]) {
+            return true;
+        } else if (boardArray === [6, 7, 8]) {
+            return true;
+        };
+    };
+    return [boardArray, win]
 }
 
 const spaces = [
-    "X", //position-0 top left
-    "X", //position-1 top middle
-    "X", //position-2 top right
+    "Y", //position-0 top left
+    "Y", //position-1 top middle
+    "Y", //position-2 top right
     null, //position-3 mid left
     null, //position-4 mid middle
     null, //position-5 mid right 
@@ -151,7 +145,7 @@ const spaces = [
 const X = "X";
 const Y = "Y";
 
-const winningMove = win(spaces, X);
+const winningMove = win(spaces, Y);
 console.log(winningMove);
 
 
