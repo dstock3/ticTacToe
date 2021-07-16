@@ -48,9 +48,9 @@ const gameBoard = ((gameSpaces) => {
             } else if (gameSpaces[i] === X) {
                 let xContent = document.createTextNode(X);
                 spaceElement.appendChild(xContent);
-                spaceElement.classList.add("x");
+                spaceElement.classList.add(X);
                 spaceElementArray.push(spaceElement);
-            } else if (gameSpaces[i] === "O") {
+            } else if (gameSpaces[i] === O) {
                 let oContent = document.createTextNode(O);
                 spaceElement.appendChild(oContent);
                 spaceElement.classList.add(O);
@@ -63,7 +63,6 @@ const gameBoard = ((gameSpaces) => {
 })();
 
 const boardElements = gameBoard.game(spaces, gameContainer);
-
 
 const spaceValues = ((spaceArray) => {
     //This function will manipulate values based on the spaceArray that is passed to it.
@@ -80,15 +79,14 @@ const spaceValues = ((spaceArray) => {
 
 //newSpaceArray = spaceValues.move(spaces, 8, Y);
 
-const flow = ((blankSpaces, spaceElArray) => {
+const flow = ((blankSpaces, spaceElArray, parent) => {
     const boardEvents = (blankSpaces, spaceElArray, parent) => {
         for (i = 0; i < blankSpaces.length; i++) {
-            const space = spaceElArray[i];
-            space.addEventListener('click', () => {
+            spaceElArray[i].addEventListener('click', () => {
                 const newSpaceArray = spaceValues.move(blankSpaces, i, X);
                 removeChildren(parent);
                 const newBoardElements = gameBoard.game(newSpaceArray, parent);
-                return [newSpaceArray, newBoardElements];
+                return [newSpaceArray, newBoardElements]    
             });
         };
     };
