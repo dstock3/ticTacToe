@@ -6,6 +6,12 @@ function elementBuilder (elType, className, parent) {
     return newElement;
 };
 
+function removeChildren(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
 const body = document.getElementsByTagName("body")[0];
 const gameHeader = elementBuilder("h1", "head", body);
 const headContent = document.createTextNode("Tic Tac Toe!");
@@ -75,19 +81,21 @@ const spaceValues = ((spaceArray) => {
 //newSpaceArray = spaceValues.move(spaces, 8, Y);
 
 const flow = ((blankSpaces, spaceElArray) => {
-    const boardEvents = (blankSpaces, spaceElArray) => {
+    const boardEvents = (blankSpaces, spaceElArray, parent) => {
         for (i = 0; i < blankSpaces.length; i++) {
             const space = spaceElArray[i];
             space.addEventListener('click', () => {
                 const newSpaceArray = spaceValues.move(blankSpaces, i, X);
-                return newSpaceArray;
+                removeChildren(parent);
+                const newBoardElements = gameBoard.game(newSpaceArray, parent);
+                return [newSpaceArray, newBoardElements];
             });
         };
     };
     return {boardEvents}
 })();
 
-const gameFlow = flow.boardEvents(spaces, boardElements)
+const gameFlow = flow.boardEvents(spaces, boardElements, gameContainer)
 
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
