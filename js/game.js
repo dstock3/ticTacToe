@@ -1,4 +1,3 @@
-/*
 //Basic HTML Elements
 function elementBuilder (elType, className, parent) {
     const newElement = document.createElement(elType);
@@ -15,11 +14,10 @@ const gameContainer = elementBuilder("div", "game-container", body);
 
 //Gameboard Setup
 
-*/
-
 const X = "X";
 const Y = "Y";
 
+//for the initial game values
 let spaces = [
     null, //position-0 top left
     null, //position-1 top middle
@@ -31,9 +29,34 @@ let spaces = [
     null, //position-7 bottom middle
     null  //position-8 bottom right
 ]; 
-//for the initial game values
 
+const gameBoard = ((gameSpaces) => {
+    const game = (gameSpaces, parent) => {
+        let spaceElementArray = [];
+        for (i = 0; i < gameSpaces.length; i++) {
+            let spaceElement = elementBuilder("div", "space", parent);
+            spaceElement.setAttribute("id", `position-${i}`);
+            if (gameSpaces[i] === null) {
+                spaceElement.classList.add("blank");
+                spaceElementArray.push(spaceElement);
+            } else if (gameSpaces[i] === X) {
+                let xContent = document.createTextNode(X);
+                spaceElement.appendChild(xContent);
+                spaceElement.classList.add("x");
+                spaceElementArray.push(spaceElement);
+            } else if (gameSpaces[i] === "O") {
+                let oContent = document.createTextNode(O);
+                spaceElement.appendChild(oContent);
+                spaceElement.classList.add(O);
+                spaceElementArray.push(spaceElement);
+            };
+        }
+        return spaceElementArray
+    }
+    return {gameSpaces, game};
+})();
 
+const boardElements = gameBoard.game(spaces, gameContainer);
 
 
 const spaceValues = ((spaceArray) => {
@@ -49,55 +72,22 @@ const spaceValues = ((spaceArray) => {
     return {move}
 })();
 
+//newSpaceArray = spaceValues.move(spaces, 8, Y);
 
-newSpaceArray = spaceValues.move(spaces, 0, Y);
-
-/*
-
-const gameBoard = ((gameSpaces) => {
-    const game = (gameSpaces, parent) => {
-        let spaceArray = [];
-        for (i = 0; i < gameSpaces.length; i++) {
-            let spaceElement = elementBuilder("div", "space", parent);
-            spaceElement.setAttribute("id", `position-${i}`);
-            if (gameSpaces[i] === null) {
-                spaceElement.classList.add("blank");
-                spaceArray.push(spaceElement);
-            } else if (gameSpaces[i] === X) {
-                let xContent = document.createTextNode(X);
-                spaceElement.appendChild(xContent);
-                spaceElement.classList.add("x");
-                spaceArray.push(spaceElement);
-            } else if (gameSpaces[i] === "O") {
-                let oContent = document.createTextNode(O);
-                spaceElement.appendChild(oContent);
-                spaceElement.classList.add(O);
-                spaceArray.push(spaceElement);
-            };
-        }
-        return spaceArray
-    }
-    return {gameSpaces, game};
-})();
-
-const board = gameBoard.game(spaces, gameContainer);
-
-const flow = (blankSpaces) => {
-    let newBoard = blankSpaces; //creates a new array based on the values from the initial array
-    const boardEvents = () => {
-        for (i = 0; i < newBoard.length; i++) {
-            let space = newBoard[i];
+const flow = ((blankSpaces, spaceElArray) => {
+    const boardEvents = (blankSpaces, spaceElArray) => {
+        for (i = 0; i < blankSpaces.length; i++) {
+            const space = spaceElArray[i];
             space.addEventListener('click', () => {
-                newBoard[i] = "X"
+                const newSpaceArray = spaceValues.move(blankSpaces, i, X);
+                return newSpaceArray;
             });
         };
-        return newBoard;
     };
+    return {boardEvents}
+})();
 
-    return {boardEvents, newBoard}
-};
-
-const gameFlow = flow(board, gameBoard.spaces);
+const gameFlow = flow.boardEvents(spaces, boardElements)
 
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
@@ -133,7 +123,6 @@ const win = (array, boardPiece) => {
 
 //const winningMove = win(spaces, X);
 
-*/
 
 
 
