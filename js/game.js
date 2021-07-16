@@ -36,7 +36,7 @@ let spaces = [
     null  //position-8 bottom right
 ]; 
 
-const gameBoard = ((gameSpaces) => {
+const gameBoard = (gameSpaces) => {
     const game = (gameSpaces, parent) => {
         let spaceElementArray = [];
         for (i = 0; i < gameSpaces.length; i++) {
@@ -60,9 +60,10 @@ const gameBoard = ((gameSpaces) => {
         return spaceElementArray
     }
     return {gameSpaces, game};
-})();
+};
 
-const boardElements = gameBoard.game(spaces, gameContainer);
+const initialBoardObj = gameBoard(spaces);
+const boardElements = initialBoardObj.game(spaces, gameContainer);
 
 const spaceValues = (spaceArray, spacePosition, spaceValue) => {
     //This function will manipulate values based on the spaceArray that is passed to it.
@@ -85,10 +86,12 @@ const flow = (blankSpaces, spaceElArray, parent) => {
         for (i = 0; i < blankSpaces.length; i++) {
             spaceElArray[i].addEventListener('click', () => {
                 const newValues = spaceValues(blankSpaces, i, X);
-                const newSpaceArray = newValues.move;
-                removeChildren(parent);
-                const newBoardElements = gameBoard.game(newSpaceArray, parent);
-                return [newSpaceArray, newBoardElements]    
+                const newSpaceArray = newValues.move(blankSpaces, i, X);
+                removeChildren(parent);   
+                const newBoardObj = gameBoard(newSpaceArray);
+                const newBoardElements = newBoardObj.game(newSpaceArray, parent);
+                let newSet = [newSpaceArray, newBoardElements];
+                return newSet
             });
         };
     };
