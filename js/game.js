@@ -1,4 +1,3 @@
-/*
 //Basic HTML Elements
 function elementBuilder (elType, className, parent) {
     const newElement = document.createElement(elType);
@@ -14,6 +13,9 @@ gameHeader.appendChild(headContent);
 const gameContainer = elementBuilder("div", "game-container", body);
 
 //Gameboard Setup
+
+const X = "X";
+const Y = "Y";
 
 let spaces = [
     null, //position-0 top left
@@ -50,15 +52,15 @@ const gameBoard = ((gameSpaces) => {
             if (gameSpaces[i] === null) {
                 spaceElement.classList.add("blank");
                 spaceArray.push(spaceElement);
-            } else if (gameSpaces[i] === 'X') {
-                let xContent = document.createTextNode("X");
+            } else if (gameSpaces[i] === X) {
+                let xContent = document.createTextNode(X);
                 spaceElement.appendChild(xContent);
                 spaceElement.classList.add("x");
                 spaceArray.push(spaceElement);
             } else if (gameSpaces[i] === "O") {
-                let oContent = document.createTextNode("O");
+                let oContent = document.createTextNode(O);
                 spaceElement.appendChild(oContent);
-                spaceElement.classList.add("o");
+                spaceElement.classList.add(O);
                 spaceArray.push(spaceElement);
             };
         }
@@ -86,20 +88,7 @@ const flow = (blankSpaces) => {
 
 const gameFlow = flow(board, gameBoard.spaces);
 
-
-winning positions: 
-0, 1, 2
-0, 4, 8
-1, 4, 7
-2, 4, 6
-2, 5, 8
-3, 4, 5
-6, 7, 8
-*/
-
-
-
-function win(array, boardPiece) {
+const win = (array, boardPiece) => {
     let win = false; //win is set to false by default
     let boardArray = [];
     for (i = 0; i < array.length; i++) {
@@ -130,23 +119,11 @@ function win(array, boardPiece) {
     return win
 }
 
-const X = "X";
-const Y = "Y";
 
-const spaces = [
-    null, //position-0 top left
-    null, //position-1 top middle
-    Y, //position-2 top right
-    null, //position-3 mid left
-    Y, //position-4 mid middle
-    null, //position-5 mid right 
-    Y, //position-6 bottom left
-    null, //position-7 bottom middle
-    null  //position-8 bottom right
-]; 
+//const winningMove = win(spaces, X);
 
-const winningMove = win(spaces, Y);
-console.log(winningMove);
+
+
 
 
 
