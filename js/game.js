@@ -1,3 +1,4 @@
+/*
 //Basic HTML Elements
 function elementBuilder (elType, className, parent) {
     const newElement = document.createElement(elType);
@@ -13,6 +14,8 @@ gameHeader.appendChild(headContent);
 const gameContainer = elementBuilder("div", "game-container", body);
 
 //Gameboard Setup
+
+*/
 
 const X = "X";
 const Y = "Y";
@@ -30,9 +33,12 @@ let spaces = [
 ]; 
 //for the initial game values
 
+
+
+
 const spaceValues = ((spaceArray) => {
     //This function will manipulate values based on the spaceArray that is passed to it.
-    const spaceMove = (spaceArray, spacePosition, spaceValue) => {
+    const move = (spaceArray, spacePosition, spaceValue) => {
         for (i = 0; i < spaceArray.length; i++) {
             if (spacePosition === i) {
                 spaceArray[i] = spaceValue;
@@ -40,8 +46,13 @@ const spaceValues = ((spaceArray) => {
         };
         return spaceArray
     };
-    return {spaceMove}
+    return {move}
 })();
+
+
+newSpaceArray = spaceValues.move(spaces, 0, Y);
+
+/*
 
 const gameBoard = ((gameSpaces) => {
     const game = (gameSpaces, parent) => {
@@ -89,7 +100,7 @@ const flow = (blankSpaces) => {
 const gameFlow = flow(board, gameBoard.spaces);
 
 const win = (array, boardPiece) => {
-    let win = false; //win is set to false by default
+    let winner = false; //win is set to false by default
     let boardArray = [];
     for (i = 0; i < array.length; i++) {
         
@@ -116,11 +127,13 @@ const win = (array, boardPiece) => {
             return true;
         };
     };
-    return win
+    return winner
 }
 
 
 //const winningMove = win(spaces, X);
+
+*/
 
 
 
