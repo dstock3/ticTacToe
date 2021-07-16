@@ -1,3 +1,4 @@
+/*
 //Basic HTML Elements
 function elementBuilder (elType, className, parent) {
     const newElement = document.createElement(elType);
@@ -85,7 +86,7 @@ const flow = (blankSpaces) => {
 
 const gameFlow = flow(board, gameBoard.spaces);
 
-/*
+
 winning positions: 
 0, 1, 2
 0, 4, 8
@@ -94,7 +95,7 @@ winning positions:
 2, 5, 8
 3, 4, 5
 6, 7, 8
-
+*/
 
 
 
@@ -135,19 +136,19 @@ const Y = "Y";
 const spaces = [
     null, //position-0 top left
     null, //position-1 top middle
-    null, //position-2 top right
+    Y, //position-2 top right
     null, //position-3 mid left
-    null, //position-4 mid middle
+    Y, //position-4 mid middle
     null, //position-5 mid right 
-    null, //position-6 bottom left
+    Y, //position-6 bottom left
     null, //position-7 bottom middle
     null  //position-8 bottom right
 ]; 
 
-const winningMove = win(spaces, X);
+const winningMove = win(spaces, Y);
 console.log(winningMove);
 
-*/
+
 
 
 
