@@ -76,16 +76,17 @@ const spaceValues = (spaceArray, spacePosition, spaceValue) => {
 //console.log(newValues.spaceArray);
 
 const flow = (blankSpaces, spaceElArray, parent) => {
+    var newSet = [];
     for (i = 0; i < blankSpaces.length; i++) {
         spaceElArray[i].addEventListener('click', () => {
             let newValues = spaceValues(blankSpaces, i, X);
-            let newSpaceArray = newValues.move(blankSpaces, i, X);
+            let newSpaceArray = newValues.spaceArray;
             removeChildren(parent);   
             let newBoardObj = gameBoard(newSpaceArray, parent);
-            let newBoardElements = newBoardObj.game(newSpaceArray, parent);
-            let newSet = { newSpaceArray, newBoardElements };
-            return { blankSpaces, spaceElArray, parent, newSet };
+            let newBoardElements = newBoardObj.spaceElementArray;
+            newSet.push(newSpaceArray, newBoardElements);
         });
+    return { newSet };
     };
 };
 
