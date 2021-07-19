@@ -82,24 +82,21 @@ const spaceValues = (spaceArray, spacePosition, spaceValue) => {
 //console.log(newValues.move(spaces, 8, Y));
 
 const flow = (blankSpaces, spaceElArray, parent) => {
-    const boardEvents = () => {
-        for (i = 0; i < blankSpaces.length; i++) {
-            spaceElArray[i].addEventListener('click', () => {
-                const newValues = spaceValues(blankSpaces, i, X);
-                const newSpaceArray = newValues.move(blankSpaces, i, X);
-                removeChildren(parent);   
-                const newBoardObj = gameBoard(newSpaceArray);
-                const newBoardElements = newBoardObj.game(newSpaceArray, parent);
-                let newSet = [newSpaceArray, newBoardElements];
-                return newSet
-            });
-        };
+    for (i = 0; i < blankSpaces.length; i++) {
+        spaceElArray[i].addEventListener('click', () => {
+            const newValues = spaceValues(blankSpaces, i, X);
+            const newSpaceArray = newValues.move(blankSpaces, i, X);
+            removeChildren(parent);   
+            const newBoardObj = gameBoard(newSpaceArray);
+            const newBoardElements = newBoardObj.game(newSpaceArray, parent);
+            let newSet = [newSpaceArray, newBoardElements];
+            return newSet
+        });
     };
-    return {blankSpaces, spaceElArray, parent, boardEvents}
 };
 
 const gameFlow = flow(spaces, boardElements, gameContainer);
-const newRound = gameFlow.boardEvents(spaces, boardElements, gameContainer);
+
 
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
