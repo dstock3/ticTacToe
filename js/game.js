@@ -60,23 +60,20 @@ const gameBoard = (gameSpaces, parent) => {
 };
 
 const initialBoardObj = gameBoard(spaces, gameContainer);
-const boardElements = initialBoardObj.spaceElementArray
+const boardElements = initialBoardObj.spaceElementArray;
 
 const spaceValues = (spaceArray, spacePosition, spaceValue) => {
     //This function will manipulate values based on the spaceArray that is passed to it.
-    const move = () => {
-        for (i = 0; i < spaceArray.length; i++) {
-            if (spacePosition === i) {
-                spaceArray[i] = spaceValue;
-            };
+    for (i = 0; i < spaceArray.length; i++) {
+        if (spacePosition === i) {
+            spaceArray[i] = spaceValue;
         };
-        return spaceArray
     };
-    return {spaceArray, spacePosition, spaceValue, move}
+    return { spaceArray };
 };
 
 //newValues = spaceValues(spaces, 8, Y);
-//console.log(newValues.move(spaces, 8, Y));
+//console.log(newValues.spaceArray);
 
 const flow = (blankSpaces, spaceElArray, parent) => {
     for (i = 0; i < blankSpaces.length; i++) {
