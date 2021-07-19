@@ -76,7 +76,7 @@ const spaceValues = (spaceArray, spacePosition, spaceValue) => {
 //console.log(newValues.spaceArray);
 
 const flow = (blankSpaces, spaceElArray, parent) => {
-    var newSet = [];
+    let newSet = [];
     for (i = 0; i < blankSpaces.length; i++) {
         let space = spaceElArray[i];
         console.log(space);
@@ -92,9 +92,6 @@ const flow = (blankSpaces, spaceElArray, parent) => {
     return { newSet };
     };
 };
-
-const gameFlow = flow(spaces, boardElements, gameContainer);
-
 
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
@@ -124,11 +121,27 @@ const win = (array, boardPiece) => {
             winner = true;
         };
     };
+    
+    /*
+    if (winner === false) {
+
+    }*/
+
     return { winner }
 }
 
 //const winningMove = win(spaces, X);
 //console.log(winningMove.winner);
+
+const gameFlow = flow(spaces, boardElements, gameContainer);
+//let newGameArray = gameFlow.newSet[0];
+//let winCheck = win(newGameArray, X);
+
+
+
+
+
+
 
 
 
