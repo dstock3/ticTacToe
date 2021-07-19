@@ -21,7 +21,7 @@ const gameContainer = elementBuilder("div", "game-container", body);
 //Gameboard Setup
 
 const X = "X";
-const Y = "Y";
+const O = "O";
 
 //for the initial game values
 let spaces = [
@@ -96,36 +96,36 @@ const gameFlow = flow(spaces, boardElements, gameContainer);
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
     let boardArray = [];
+
     for (i = 0; i < array.length; i++) {
         
         if (array[i] === boardPiece) {
             boardArray.push(i)
         };
     };
-    console.log(boardArray)
 
     for (i = 0; i < array.length; i++) {
         if (JSON.stringify(boardArray) === JSON.stringify([0, 1, 2])) {
-            return true;
+            winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([0, 4, 8])) {
-            return true;
+            winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([1, 4, 7])) {
-            return true;
+            winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([2, 4, 6])) {
-            return true;
+            winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([2, 5, 8])) {
-            return true;
+            winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([3, 4, 5])) {
-            return true;
+            winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([6, 7, 8])) {
-            return true;
+            winner = true;
         };
     };
-    return winner
+    return { winner }
 }
 
-
 //const winningMove = win(spaces, X);
+//console.log(winningMove.winner);
 
 
 
