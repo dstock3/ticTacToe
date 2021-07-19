@@ -36,34 +36,31 @@ let spaces = [
     null  //position-8 bottom right
 ]; 
 
-const gameBoard = (gameSpaces) => {
-    const game = (gameSpaces, parent) => {
-        let spaceElementArray = [];
-        for (i = 0; i < gameSpaces.length; i++) {
-            let spaceElement = elementBuilder("div", "space", parent);
-            spaceElement.setAttribute("id", `position-${i}`);
-            if (gameSpaces[i] === null) {
-                spaceElement.classList.add("blank");
-                spaceElementArray.push(spaceElement);
-            } else if (gameSpaces[i] === X) {
-                let xContent = document.createTextNode(X);
-                spaceElement.appendChild(xContent);
-                spaceElement.classList.add(X);
-                spaceElementArray.push(spaceElement);
-            } else if (gameSpaces[i] === O) {
-                let oContent = document.createTextNode(O);
-                spaceElement.appendChild(oContent);
-                spaceElement.classList.add(O);
-                spaceElementArray.push(spaceElement);
-            };
-        }
-        return spaceElementArray
+const gameBoard = (gameSpaces, parent) => {
+    let spaceElementArray = [];
+    for (i = 0; i < gameSpaces.length; i++) {
+        let spaceElement = elementBuilder("div", "space", parent);
+        spaceElement.setAttribute("id", `position-${i}`);
+        if (gameSpaces[i] === null) {
+            spaceElement.classList.add("blank");
+            spaceElementArray.push(spaceElement);
+        } else if (gameSpaces[i] === X) {
+            let xContent = document.createTextNode(X);
+            spaceElement.appendChild(xContent);
+            spaceElement.classList.add(X);
+            spaceElementArray.push(spaceElement);
+        } else if (gameSpaces[i] === O) {
+            let oContent = document.createTextNode(O);
+            spaceElement.appendChild(oContent);
+            spaceElement.classList.add(O);
+            spaceElementArray.push(spaceElement);
+        };
     }
-    return {gameSpaces, game};
+    return { spaceElementArray };
 };
 
-const initialBoardObj = gameBoard(spaces);
-const boardElements = initialBoardObj.game(spaces, gameContainer);
+const initialBoardObj = gameBoard(spaces, gameContainer);
+const boardElements = initialBoardObj.spaceElementArray
 
 const spaceValues = (spaceArray, spacePosition, spaceValue) => {
     //This function will manipulate values based on the spaceArray that is passed to it.
@@ -89,8 +86,8 @@ const flow = (blankSpaces, spaceElArray, parent) => {
             removeChildren(parent);   
             const newBoardObj = gameBoard(newSpaceArray);
             const newBoardElements = newBoardObj.game(newSpaceArray, parent);
-            let newSet = [newSpaceArray, newBoardElements];
-            return newSet
+            let newSet = { newSpaceArray, newBoardElements };
+            return { blankSpaces, spaceElArray, parent, newSet };
         });
     };
 };
