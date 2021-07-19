@@ -78,8 +78,11 @@ const spaceValues = (spaceArray, spacePosition, spaceValue) => {
 const flow = (blankSpaces, spaceElArray, parent) => {
     var newSet = [];
     for (i = 0; i < blankSpaces.length; i++) {
-        spaceElArray[i].addEventListener('click', () => {
+        let space = spaceElArray[i];
+        console.log(space);
+        space.addEventListener('click', () => {
             let newValues = spaceValues(blankSpaces, i, X);
+            console.log("new values =" + newValues.spaceArray);
             let newSpaceArray = newValues.spaceArray;
             removeChildren(parent);   
             let newBoardObj = gameBoard(newSpaceArray, parent);
