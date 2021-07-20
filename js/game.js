@@ -62,38 +62,22 @@ const gameBoard = (gameSpaces, parent) => {
 const initialBoardObj = gameBoard(spaces, gameContainer);
 const boardElements = initialBoardObj.spaceElementArray;
 
-/*
-const spaceValues = (spaceArray, spacePosition, spaceValue) => {
-    //This function will manipulate values based on the spaceArray that is passed to it.
-    for (i = 0; i < spaceArray.length; i++) {
-        let checkPosition = i;
-        if (spacePosition === checkPosition) {
-            spaceArray[i] = spaceValue;
-        };
-    };
-    return { spaceArray };
-};
-*/
-
-//newValues = spaceValues(spaces, 8, Y);
-//console.log(newValues.spaceArray);
-
 const flow = (blankSpaces, spaceElArray, parent) => {
     let newSet = [];
-    let newSpaceArray = blankSpaces;
     for (i = 0; i < blankSpaces.length; i++) {
         spaceElArray[i].addEventListener('click', () => {
-            newSpaceArray.splice(i, 1, X);
+            (function (_blankSpaces) {
+                blankSpaces.splice(i, 1, X);
+            } ());
             removeChildren(parent);   
-            let newBoardObj = gameBoard(newSpaceArray, parent);
+            let newBoardObj = gameBoard(blankSpaces, parent);
             let newBoardElements = newBoardObj.spaceElementArray;
-            newSet.push(newSpaceArray, newBoardElements);
+            newSet.push(blankSpaces, newBoardElements);
         });
     return { newSet };
 
     };
 }
-
 
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
@@ -131,9 +115,6 @@ const win = (array, boardPiece) => {
 
     return { winner }
 }
-
-//const winningMove = win(spaces, X);
-//console.log(winningMove.winner);
 
 const gameFlow = flow(spaces, boardElements, gameContainer);
 //let newGameArray = gameFlow.newSet[0];
