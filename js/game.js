@@ -1,3 +1,4 @@
+
 //Basic HTML Elements
 function elementBuilder (elType, className, parent) {
     const newElement = document.createElement(elType);
@@ -22,7 +23,7 @@ const gameContainer = elementBuilder("div", "game-container", body);
 
 const X = "X";
 const O = "O";
-
+/*
 //for the initial game values
 let spaces = [
     null, //position-0 top left
@@ -113,7 +114,7 @@ const win = (array, boardPiece) => {
     if (winner === false) {
         //if winner is false when this is called, I think I can instantiate another round here
 
-    }*/
+    }
 
     return { winner }
 }
@@ -122,21 +123,21 @@ const gameFlow = flow(spaces, boardElements, gameContainer);
 //let newGameArray = gameFlow.newSet[0];
 //let winCheck = win(newGameArray, X);
 
-
-
+*/
+const winCheck = true;
+let playerArray = [X, O];
 for (i = 0; i < playerArray.length; i++) {
-    let playerArray = [X, Y];
-    let winCheck = win(newGameArray, playerArray[i]);
+    //let winCheck = win(newGameArray, playerArray[i]);
     if (winCheck === true) {
-        let winMessage = elementBuilder("h2", "win-result", parent);
+        let winMessage = elementBuilder("h2", "win-result", body);
         if (playerArray[i] === X) {
             let winContent = document.createTextNode("Player 1 has won!");
             winMessage.appendChild(winContent);
         } else {
-            let winContent = document.createTextNode("Player 1 has won!");
+            let winContent = document.createTextNode("Player 2 has won!");
             winMessage.appendChild(winContent);
         };
-    };
+    }; //else if winCheck = false, instantiate a new round
 }
 
 
