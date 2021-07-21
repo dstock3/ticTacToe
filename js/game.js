@@ -138,12 +138,14 @@ let exampleArray = [
 //let newGameArray = gameFlow.newSet[0];
 //let winCheck = win(newGameArray, X);
 
+const playerArray = [X, O];
+
 function winChecker(boardArray, parent) {
-    let playerArray = [X, O];
-    for (i = 0; i < playerArray.length; i++) {
+    for (i = 0; i <= playerArray.length; i++) {
         console.log(playerArray[i])
         let winCheck = win(boardArray, playerArray[i]);
-        if (winCheck.winner === true) {
+        let winner = winCheck.winner;
+        if (winner === true) {
             let winMessage = elementBuilder("h2", "win-result", parent);
             if (JSON.stringify(playerArray[i]) === JSON.stringify(X)) {
                 let winContent = document.createTextNode("Player 1 has won!");
@@ -154,7 +156,7 @@ function winChecker(boardArray, parent) {
                 winMessage.appendChild(winContent);
                 return winMessage
             };
-        }; //else if winCheck = false, instantiate a new round
+        }; //else if winCheck = false, instantiate a new round */
     }
 }
 
