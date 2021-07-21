@@ -62,7 +62,7 @@ const gameBoard = (gameSpaces, parent) => {
 const initialBoardObj = gameBoard(spaces, gameContainer);
 const boardElements = initialBoardObj.spaceElementArray;
 
-const flow = (blankSpaces, spaceElArray, parent) => {
+const flow = ((blankSpaces, spaceElArray, parent) => {
     let newSet = [];
     for (i = 0; i < blankSpaces.length; i++) {
         spaceElArray[i].addEventListener('click', () => {
@@ -77,7 +77,7 @@ const flow = (blankSpaces, spaceElArray, parent) => {
     return { newSet };
 
     };
-}
+})();
 
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
@@ -107,6 +107,7 @@ const win = (array, boardPiece) => {
             winner = true;
         };
     };
+
     
     /*
     if (winner === false) {
@@ -120,6 +121,13 @@ const win = (array, boardPiece) => {
 const gameFlow = flow(spaces, boardElements, gameContainer);
 //let newGameArray = gameFlow.newSet[0];
 //let winCheck = win(newGameArray, X);
+
+
+
+if (winCheck === true) {
+    let winMessage = elementBuilder("h2", "win-result", parent);
+    let winContent = document.createTextNode("Player 1 has won!");
+}
 
 
 
