@@ -1,3 +1,4 @@
+
 //Basic HTML Elements
 function elementBuilder (elType, className, parent) {
     const newElement = document.createElement(elType);
@@ -22,7 +23,7 @@ const gameContainer = elementBuilder("div", "game-container", body);
 
 const X = "X";
 const O = "O";
-
+/*
 //for the initial game values
 let spaces = [
     null, //position-0 top left
@@ -79,6 +80,8 @@ const flow = ((blankSpaces, spaceElArray, parent) => {
     };
 })();
 
+*/
+
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
     let boardArray = [];
@@ -118,21 +121,48 @@ const win = (array, boardPiece) => {
     return { winner }
 }
 
-const gameFlow = flow(spaces, boardElements, gameContainer);
+
+let exampleArray = [
+    X, //position-0 top left
+    X, //position-1 top middle
+    X, //position-2 top right
+    null, //position-3 mid left
+    null, //position-4 mid middle
+    null, //position-5 mid right 
+    null, //position-6 bottom left
+    null, //position-7 bottom middle
+    null  //position-8 bottom right
+]; 
+
+//const gameFlow = flow(spaces, boardElements, gameContainer);
 //let newGameArray = gameFlow.newSet[0];
 //let winCheck = win(newGameArray, X);
 
+const playerArray = [X, O];
 
-
-for (i = 0; i < playerArray.length; i++) {
-    let playerArray = [X, Y];
-    let winCheck = win(newGameArray, playerArray[i]);
-    if (winCheck === true) {
-        let winMessage = elementBuilder("h2", "win-result", parent);
-        let winContent = document.createTextNode("Player 1 has won!");
-        winMessage.appendChild(winContent);
+function winChecker(boardArray, parent) {
+    for (i = 0; i <= playerArray.length; i++) {
+        console.log(playerArray[i])
+        let winCheck = win(boardArray, playerArray[i]);
+        let winner = winCheck.winner;
+        if (winner === true) {
+            let winMessage = elementBuilder("h2", "win-result", parent);
+            if (JSON.stringify(playerArray[i]) === JSON.stringify(X)) {
+                let winContent = document.createTextNode("Player 1 has won!");
+                winMessage.appendChild(winContent);
+                return winMessage
+            } else if (JSON.stringify(playerArray[i]) === JSON.stringify(O)) {
+                let winContent = document.createTextNode("Player 2 has won!");
+                winMessage.appendChild(winContent);
+                return winMessage
+            };
+        }; //else if winCheck = false, instantiate a new round */
     }
 }
+
+winChecker(exampleArray, body);
+
+
 
 
 
