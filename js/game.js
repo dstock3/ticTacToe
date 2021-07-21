@@ -110,6 +110,7 @@ const win = (array, boardPiece) => {
     
     /*
     if (winner === false) {
+        //if winner is false when this is called, I think I can instantiate another round here
 
     }*/
 
