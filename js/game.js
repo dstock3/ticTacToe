@@ -122,12 +122,18 @@ const gameFlow = flow(spaces, boardElements, gameContainer);
 //let newGameArray = gameFlow.newSet[0];
 //let winCheck = win(newGameArray, X);
 
+let playerArray = [X, Y];
 
+for (i = 0; i < playerArray.length; i++) {
+    let winCheck = win(newGameArray, playerArray[i]);
+    if (winCheck === true) {
+        let winMessage = elementBuilder("h2", "win-result", parent);
+        let winContent = document.createTextNode("Player 1 has won!");
+    }
 
-if (winCheck === true) {
-    let winMessage = elementBuilder("h2", "win-result", parent);
-    let winContent = document.createTextNode("Player 1 has won!");
 }
+
+
 
 
 
