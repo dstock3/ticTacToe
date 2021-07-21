@@ -80,6 +80,8 @@ const flow = ((blankSpaces, spaceElArray, parent) => {
     };
 })();
 
+*/
+
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
     let boardArray = [];
@@ -114,31 +116,51 @@ const win = (array, boardPiece) => {
     if (winner === false) {
         //if winner is false when this is called, I think I can instantiate another round here
 
-    }
+    }*/
 
     return { winner }
 }
 
-const gameFlow = flow(spaces, boardElements, gameContainer);
+
+let exampleArray = [
+    X, //position-0 top left
+    X, //position-1 top middle
+    X, //position-2 top right
+    null, //position-3 mid left
+    null, //position-4 mid middle
+    null, //position-5 mid right 
+    null, //position-6 bottom left
+    null, //position-7 bottom middle
+    null  //position-8 bottom right
+]; 
+
+//const gameFlow = flow(spaces, boardElements, gameContainer);
 //let newGameArray = gameFlow.newSet[0];
 //let winCheck = win(newGameArray, X);
 
-*/
-const winCheck = true;
-let playerArray = [X, O];
-for (i = 0; i < playerArray.length; i++) {
-    //let winCheck = win(newGameArray, playerArray[i]);
-    if (winCheck === true) {
-        let winMessage = elementBuilder("h2", "win-result", body);
-        if (playerArray[i] === X) {
-            let winContent = document.createTextNode("Player 1 has won!");
-            winMessage.appendChild(winContent);
-        } else {
-            let winContent = document.createTextNode("Player 2 has won!");
-            winMessage.appendChild(winContent);
-        };
-    }; //else if winCheck = false, instantiate a new round
+function winChecker(boardArray, parent) {
+    let playerArray = [X, O];
+    for (i = 0; i < playerArray.length; i++) {
+        console.log(playerArray[i])
+        let winCheck = win(boardArray, playerArray[i]);
+        if (winCheck.winner === true) {
+            let winMessage = elementBuilder("h2", "win-result", parent);
+            if (playerArray[i] === X) {
+                let winContent = document.createTextNode("Player 1 has won!");
+                winMessage.appendChild(winContent);
+                return winContent
+            } else if (playerArray[i] === O) {
+                let winContent = document.createTextNode("Player 2 has won!");
+                winMessage.appendChild(winContent);
+                return winContent
+            };
+        }; //else if winCheck = false, instantiate a new round
+    }
 }
+
+winChecker(exampleArray, body);
+
+
 
 
 
