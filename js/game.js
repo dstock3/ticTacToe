@@ -145,14 +145,14 @@ function winChecker(boardArray, parent) {
         let winCheck = win(boardArray, playerArray[i]);
         if (winCheck.winner === true) {
             let winMessage = elementBuilder("h2", "win-result", parent);
-            if (playerArray[i] === X) {
+            if (JSON.stringify(playerArray[i]) === JSON.stringify(X)) {
                 let winContent = document.createTextNode("Player 1 has won!");
                 winMessage.appendChild(winContent);
-                return winContent
-            } else if (playerArray[i] === O) {
+                return winMessage
+            } else if (JSON.stringify(playerArray[i]) === JSON.stringify(O)) {
                 let winContent = document.createTextNode("Player 2 has won!");
                 winMessage.appendChild(winContent);
-                return winContent
+                return winMessage
             };
         }; //else if winCheck = false, instantiate a new round
     }
