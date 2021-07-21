@@ -126,11 +126,11 @@ const win = (array, boardPiece) => {
 let exampleArray = [
     null, //position-0 top left
     null, //position-1 top middle
-    X, //position-2 top right
+    O, //position-2 top right
     null, //position-3 mid left
-    X, //position-4 mid middle
+    O, //position-4 mid middle
     null, //position-5 mid right 
-    X, //position-6 bottom left
+    O, //position-6 bottom left
     null, //position-7 bottom middle
     null  //position-8 bottom right
 ]; 
@@ -146,13 +146,17 @@ function winChecker(boardArray, parent) {
         let winCheck = win(boardArray, playerArray[i]);
         if (winCheck.winner === true) {
             let winMessage = elementBuilder("h2", "win-result", parent);
+
             if (winCheck.piece === X) {
                 let winContent = document.createTextNode("Player 1 has won!");
                 winMessage.appendChild(winContent);
-            } else {
+            }
+
+            if (winCheck.piece === O) {
                 let winContent = document.createTextNode("Player 2 has won!");
                 winMessage.appendChild(winContent);
             };
+
         }; //else if winCheck = false, instantiate a new round */
     }
 }
