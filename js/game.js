@@ -60,21 +60,19 @@ const gameBoard = (gameSpaces, parent) => {
     return { spaceElementArray };
 };
 
-const initialBoardObj = gameBoard(spaces, gameContainer);
-const boardElements = initialBoardObj.spaceElementArray;
-
 const flow = (blankSpaces, spaceElArray, parent) => {
     let newSet = [];
 
     function reviseSpaceArray(array, i, boardPiece) {
         array.splice(i, 1, boardPiece);
+        return array;
     }
 
     for (i = 0; i < blankSpaces.length; i++) {
         spaceElArray[i].addEventListener('click', () => {
-            reviseSpaceArray(blankSpaces, i, X);
+            let newSpaceArray = reviseSpaceArray(blankSpaces, i, X);
             removeChildren(parent);   
-            let newBoardObj = gameBoard(blankSpaces, parent);
+            let newBoardObj = gameBoard(newSpaceArray, parent);
             let newBoardElements = newBoardObj.spaceElementArray;
             newSet.push(blankSpaces, newBoardElements);
         });
@@ -82,6 +80,10 @@ const flow = (blankSpaces, spaceElArray, parent) => {
 
     };
 };
+
+const initialBoardObj = gameBoard(spaces, gameContainer);
+const boardElements = initialBoardObj.spaceElementArray;
+const newSet = flow(spaces, boardElements, gameContainer);
 
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
