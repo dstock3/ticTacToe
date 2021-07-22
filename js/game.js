@@ -65,11 +65,14 @@ const boardElements = initialBoardObj.spaceElementArray;
 
 const flow = (blankSpaces, spaceElArray, parent) => {
     let newSet = [];
+
+    function reviseSpaceArray(array, i, boardPiece) {
+        array.splice(i, 1, boardPiece);
+    }
+
     for (i = 0; i < blankSpaces.length; i++) {
         spaceElArray[i].addEventListener('click', () => {
-            (function (_blankSpaces) {
-                blankSpaces.splice(i, 1, X);
-            } ());
+            reviseSpaceArray(blankSpaces, i, X);
             removeChildren(parent);   
             let newBoardObj = gameBoard(blankSpaces, parent);
             let newBoardElements = newBoardObj.spaceElementArray;
