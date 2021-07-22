@@ -126,11 +126,11 @@ const win = (array, boardPiece) => {
 let exampleArray = [
     null, //position-0 top left
     null, //position-1 top middle
-    O, //position-2 top right
+    X, //position-2 top right
     null, //position-3 mid left
-    O, //position-4 mid middle
+    X, //position-4 mid middle
     null, //position-5 mid right 
-    O, //position-6 bottom left
+    X, //position-6 bottom left
     null, //position-7 bottom middle
     null  //position-8 bottom right
 ]; 
@@ -139,27 +139,23 @@ let exampleArray = [
 //let newGameArray = gameFlow.newSet[0];
 //let winCheck = win(newGameArray, X);
 
-const playerArray = [X, O];
-
 function winChecker(boardArray, parent) {
-    for (i = 0; i < playerArray.length; i++) {
-        let winCheck = win(boardArray, playerArray[i]);
-        if (winCheck.winner === true) {
-            let winMessage = elementBuilder("h2", "win-result", parent);
+    let winCheck = win(boardArray, X);
+    if (winCheck.winner === true) {
+        let winMessage = elementBuilder("h2", "win-result", parent);
+        let winContent = document.createTextNode("Player 1 has won!");
+        winMessage.appendChild(winContent);
+    };
 
-            if (winCheck.piece === X) {
-                let winContent = document.createTextNode("Player 1 has won!");
-                winMessage.appendChild(winContent);
-            }
-
-            if (winCheck.piece === O) {
-                let winContent = document.createTextNode("Player 2 has won!");
-                winMessage.appendChild(winContent);
-            };
-
-        }; //else if winCheck = false, instantiate a new round */
-    }
-}
+    winCheck = win(boardArray, O);
+    if (winCheck.winner === true) {
+        let winMessage = elementBuilder("h2", "win-result", parent);
+        let winContent = document.createTextNode("Player 2 has won!");
+        winMessage.appendChild(winContent);
+    };
+    
+    //else if winCheck = false, instantiate a new round */
+};
 
 winChecker(exampleArray, gameContainer);
 
