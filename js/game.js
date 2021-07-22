@@ -39,11 +39,25 @@ let spaces = [
 
 const gameBoard = (gameSpaces, parent) => {
     let spaceElementArray = [];
+    let newSet = [];
+
+    function reviseSpaceArray(array, i, boardPiece) {
+        array.splice(i, 1, boardPiece);
+        return array;
+    }
+
     for (i = 0; i < gameSpaces.length; i++) {
         let spaceElement = elementBuilder("div", "space", parent);
         spaceElement.setAttribute("id", `position-${i}`);
         if (gameSpaces[i] === null) {
             spaceElement.classList.add("blank");
+            spaceElement.addEventListener('click', () => {
+                let newSpaceArray = reviseSpaceArray(gameSpaces, i, X);
+                removeChildren(parent);   
+                let newBoardObj = gameBoard(newSpaceArray, parent);
+                let newBoardElements = newBoardObj.spaceElementArray;
+                newSet.push(gameSpaces, newBoardElements);
+            });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
             let xContent = document.createTextNode(X);
@@ -60,6 +74,7 @@ const gameBoard = (gameSpaces, parent) => {
     return { spaceElementArray };
 };
 
+/*
 const flow = (blankSpaces, spaceElArray, parent) => {
     let newSet = [];
 
@@ -80,10 +95,11 @@ const flow = (blankSpaces, spaceElArray, parent) => {
 
     };
 };
+*/
 
 const initialBoardObj = gameBoard(spaces, gameContainer);
 const boardElements = initialBoardObj.spaceElementArray;
-const newSet = flow(spaces, boardElements, gameContainer);
+//const newSet = flow(spaces, boardElements, gameContainer);
 
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
