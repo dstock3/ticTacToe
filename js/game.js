@@ -23,7 +23,7 @@ const gameContainer = elementBuilder("div", "game-container", body);
 
 const X = "X";
 const O = "O";
-/*
+
 //for the initial game values
 let spaces = [
     null, //position-0 top left
@@ -60,27 +60,30 @@ const gameBoard = (gameSpaces, parent) => {
     return { spaceElementArray };
 };
 
-const initialBoardObj = gameBoard(spaces, gameContainer);
-const boardElements = initialBoardObj.spaceElementArray;
-
-const flow = ((blankSpaces, spaceElArray, parent) => {
+const flow = (blankSpaces, spaceElArray, parent) => {
     let newSet = [];
+
+    function reviseSpaceArray(array, i, boardPiece) {
+        array.splice(i, 1, boardPiece);
+        return array;
+    }
+
     for (i = 0; i < blankSpaces.length; i++) {
         spaceElArray[i].addEventListener('click', () => {
-            (function (_blankSpaces) {
-                blankSpaces.splice(i, 1, X);
-            } ());
+            let newSpaceArray = reviseSpaceArray(blankSpaces, i, X);
             removeChildren(parent);   
-            let newBoardObj = gameBoard(blankSpaces, parent);
+            let newBoardObj = gameBoard(newSpaceArray, parent);
             let newBoardElements = newBoardObj.spaceElementArray;
             newSet.push(blankSpaces, newBoardElements);
         });
     return { newSet };
 
     };
-})();
+};
 
-*/
+const initialBoardObj = gameBoard(spaces, gameContainer);
+const boardElements = initialBoardObj.spaceElementArray;
+const newSet = flow(spaces, boardElements, gameContainer);
 
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
@@ -89,7 +92,7 @@ const win = (array, boardPiece) => {
 
     for (i = 0; i < array.length; i++) {
         
-        if (array[i] === boardPiece) {
+        if (array[i] === piece) {
             boardArray.push(i)
         };
     };
@@ -122,24 +125,7 @@ const win = (array, boardPiece) => {
     return { winner, piece }
 }
 
-
-let exampleArray = [
-    null, //position-0 top left
-    null, //position-1 top middle
-    X, //position-2 top right
-    null, //position-3 mid left
-    X, //position-4 mid middle
-    null, //position-5 mid right 
-    X, //position-6 bottom left
-    null, //position-7 bottom middle
-    null  //position-8 bottom right
-]; 
-
-//const gameFlow = flow(spaces, boardElements, gameContainer);
-//let newGameArray = gameFlow.newSet[0];
-//let winCheck = win(newGameArray, X);
-
-function winChecker(boardArray, parent) {
+function winChecker(boardArray) {
     let winCheck = win(boardArray, X);
     if (winCheck.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", parent);
@@ -157,7 +143,7 @@ function winChecker(boardArray, parent) {
     //else if winCheck = false, instantiate a new round */
 };
 
-winChecker(exampleArray, gameContainer);
+//winChecker(exampleArray, gameContainer);
 
 
 
