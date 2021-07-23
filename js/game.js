@@ -42,20 +42,22 @@ const gameBoard = (gameSpaces, parent) => {
 
     function reviseSpaceArray(spaceArray, i, boardPiece) {
         spaceArray.splice(i, 1, boardPiece);
-        return array;
+        return spaceArray;
     }
 
     for (i = 0; i < gameSpaces.length; i++) {
+        let newIndexValue = i;
         let spaceElement = elementBuilder("div", "space", parent);
-        spaceElement.setAttribute("id", `position-${i}`);
+        spaceElement.setAttribute("id", `position-${newIndexValue}`);
         if (gameSpaces[i] === null) {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', () => {
-                let newSpaceArray = reviseSpaceArray(gameSpaces, i, X);
-                removeChildren(parent);   
+                removeChildren(parent);  
+                let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, X);
                 let newBoardObj = gameBoard(newSpaceArray, parent);
-                let newBoardElements = newBoardObj.spaceElementArray;
-                newSet.push(gameSpaces);
+                console.log(newSpaceArray);
+ 
+
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
@@ -72,29 +74,6 @@ const gameBoard = (gameSpaces, parent) => {
     }
     return { spaceElementArray, gameSpaces };
 };
-
-/*
-const flow = (blankSpaces, spaceElArray, parent) => {
-    let newSet = [];
-
-    function reviseSpaceArray(array, i, boardPiece) {
-        array.splice(i, 1, boardPiece);
-        return array;
-    }
-
-    for (i = 0; i < blankSpaces.length; i++) {
-        spaceElArray[i].addEventListener('click', () => {
-            let newSpaceArray = reviseSpaceArray(blankSpaces, i, X);
-            removeChildren(parent);   
-            let newBoardObj = gameBoard(newSpaceArray, parent);
-            let newBoardElements = newBoardObj.spaceElementArray;
-            newSet.push(blankSpaces, newBoardElements);
-        });
-    return { newSet };
-
-    };
-};
-*/
 
 const initialBoardObj = gameBoard(spaces, gameContainer);
 const boardElements = initialBoardObj.spaceElementArray;
