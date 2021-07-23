@@ -13,8 +13,13 @@ body {
 .game-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     width: 550px;
     height: 550px;
+}
+
+.win-result {
+    align-self: center;
 }
 
 .space {
