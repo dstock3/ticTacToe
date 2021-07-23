@@ -39,10 +39,9 @@ let spaces = [
 
 const gameBoard = (gameSpaces, parent) => {
     let spaceElementArray = [];
-    let newSet = [];
 
-    function reviseSpaceArray(array, i, boardPiece) {
-        array.splice(i, 1, boardPiece);
+    function reviseSpaceArray(spaceArray, i, boardPiece) {
+        spaceArray.splice(i, 1, boardPiece);
         return array;
     }
 
@@ -56,7 +55,7 @@ const gameBoard = (gameSpaces, parent) => {
                 removeChildren(parent);   
                 let newBoardObj = gameBoard(newSpaceArray, parent);
                 let newBoardElements = newBoardObj.spaceElementArray;
-                newSet.push(gameSpaces, newBoardElements);
+                newSet.push(gameSpaces);
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
@@ -71,7 +70,7 @@ const gameBoard = (gameSpaces, parent) => {
             spaceElementArray.push(spaceElement);
         };
     }
-    return { spaceElementArray };
+    return { spaceElementArray, gameSpaces };
 };
 
 /*
