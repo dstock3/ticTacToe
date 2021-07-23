@@ -37,8 +37,24 @@ let spaces = [
     null  //position-8 bottom right
 ]; 
 
+const flowArray = [];
+
+const flow = (newFlowArray) => {
+    if (newFlowArray.length === 0) {
+        flowArray.push(X);
+        return [flowArray, X];
+    } else if (flowArray.pop() === X) {
+        flowArray.push(O);
+        return [flowArray, O];
+    } else if (flowArray.length >= 9) {
+        return null
+    }
+}
+
 const gameBoard = (gameSpaces, parent) => {
     let spaceElementArray = [];
+
+
 
     function reviseSpaceArray(spaceArray, i, boardPiece) {
         spaceArray.splice(i, 1, boardPiece);
@@ -52,8 +68,13 @@ const gameBoard = (gameSpaces, parent) => {
         if (gameSpaces[i] === null) {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', () => {
-                removeChildren(parent);  
-                let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, X);
+                removeChildren(parent);
+                let moveArray = flow(flowArray);  
+                console.log(moveArray)
+                let flowArray = moveArray[0];
+                let move = moveArray[1];
+                let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
+
                 let newBoardObj = gameBoard(newSpaceArray, parent);
                 winChecker(newBoardObj.gameSpaces, parent);
             });
@@ -76,7 +97,7 @@ const gameBoard = (gameSpaces, parent) => {
 
 const initialBoardObj = gameBoard(spaces, gameContainer);
 const boardElements = initialBoardObj.spaceElementArray;
-//const newSet = flow(spaces, boardElements, gameContainer);
+
 
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
@@ -109,14 +130,6 @@ const win = (array, boardPiece) => {
             winner = true;
         }
     };
-
-    
-    /*
-    if (winner === false) {
-        //if winner is false when this is called, I think I can instantiate another round here
-
-    }*/
-
     return { winner, piece }
 }
 
