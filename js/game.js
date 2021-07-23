@@ -55,9 +55,6 @@ const gameBoard = (gameSpaces, parent) => {
                 removeChildren(parent);  
                 let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, X);
                 let newBoardObj = gameBoard(newSpaceArray, parent);
-                console.log(newSpaceArray);
- 
-
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
@@ -71,8 +68,9 @@ const gameBoard = (gameSpaces, parent) => {
             spaceElement.classList.add(O);
             spaceElementArray.push(spaceElement);
         };
+
     }
-    return { spaceElementArray, gameSpaces };
+    return { newBoardObj };
 };
 
 const initialBoardObj = gameBoard(spaces, gameContainer);
