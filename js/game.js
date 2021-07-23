@@ -39,22 +39,20 @@ let spaces = [
 
 const flowArray = [];
 
-const flow = (newFlowArray) => {
-    if (newFlowArray.length === 0) {
-        flowArray.push(X);
-        return [flowArray, X];
-    } else if (flowArray.pop() === X) {
-        flowArray.push(O);
-        return [flowArray, O];
-    } else if (flowArray.length >= 9) {
+function flow (newFlowArray) {
+    if (newFlowArray === []) {
+        newFlowArray.push(X);
+        return [newFlowArray, X];
+    } else if (newFlowArray.pop() === X) {
+        newFlowArray.push(O);
+        return [newFlowArray, O];
+    } else if (newFlowArray.length >= 9) {
         return null
     }
 }
 
-const gameBoard = (gameSpaces, parent) => {
+const gameBoard = (gameSpaces, parent, newflowArray) => {
     let spaceElementArray = [];
-
-
 
     function reviseSpaceArray(spaceArray, i, boardPiece) {
         spaceArray.splice(i, 1, boardPiece);
@@ -69,7 +67,7 @@ const gameBoard = (gameSpaces, parent) => {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', () => {
                 removeChildren(parent);
-                let moveArray = flow(flowArray);  
+                let moveArray = flow(newflowArray);  
                 console.log(moveArray)
                 let flowArray = moveArray[0];
                 let move = moveArray[1];
@@ -95,7 +93,7 @@ const gameBoard = (gameSpaces, parent) => {
     return { spaceElementArray, gameSpaces };
 };
 
-const initialBoardObj = gameBoard(spaces, gameContainer);
+const initialBoardObj = gameBoard(spaces, gameContainer, flowArray);
 const boardElements = initialBoardObj.spaceElementArray;
 
 
