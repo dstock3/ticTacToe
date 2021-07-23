@@ -37,25 +37,46 @@ let spaces = [
     null  //position-8 bottom right
 ]; 
 
+const flowArray = [];
+
+const flow = (newFlowArray) => {
+    if (newFlowArray.length === 0) {
+        flowArray.push(X);
+        return [flowArray, X];
+    } else if (flowArray.pop() === X) {
+        flowArray.push(O);
+        return [flowArray, O];
+    } else if (flowArray.length >= 9) {
+        return null
+    }
+}
+
 const gameBoard = (gameSpaces, parent) => {
     let spaceElementArray = [];
 
+
+
     function reviseSpaceArray(spaceArray, i, boardPiece) {
         spaceArray.splice(i, 1, boardPiece);
-        return array;
+        return spaceArray;
     }
 
     for (i = 0; i < gameSpaces.length; i++) {
+        let newIndexValue = i;
         let spaceElement = elementBuilder("div", "space", parent);
-        spaceElement.setAttribute("id", `position-${i}`);
+        spaceElement.setAttribute("id", `position-${newIndexValue}`);
         if (gameSpaces[i] === null) {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', () => {
-                let newSpaceArray = reviseSpaceArray(gameSpaces, i, X);
-                removeChildren(parent);   
+                removeChildren(parent);
+                let moveArray = flow(flowArray);  
+                console.log(moveArray)
+                let flowArray = moveArray[0];
+                let move = moveArray[1];
+                let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
+
                 let newBoardObj = gameBoard(newSpaceArray, parent);
-                let newBoardElements = newBoardObj.spaceElementArray;
-                newSet.push(gameSpaces);
+                winChecker(newBoardObj.gameSpaces, parent);
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
@@ -69,36 +90,14 @@ const gameBoard = (gameSpaces, parent) => {
             spaceElement.classList.add(O);
             spaceElementArray.push(spaceElement);
         };
+
     }
     return { spaceElementArray, gameSpaces };
 };
 
-/*
-const flow = (blankSpaces, spaceElArray, parent) => {
-    let newSet = [];
-
-    function reviseSpaceArray(array, i, boardPiece) {
-        array.splice(i, 1, boardPiece);
-        return array;
-    }
-
-    for (i = 0; i < blankSpaces.length; i++) {
-        spaceElArray[i].addEventListener('click', () => {
-            let newSpaceArray = reviseSpaceArray(blankSpaces, i, X);
-            removeChildren(parent);   
-            let newBoardObj = gameBoard(newSpaceArray, parent);
-            let newBoardElements = newBoardObj.spaceElementArray;
-            newSet.push(blankSpaces, newBoardElements);
-        });
-    return { newSet };
-
-    };
-};
-*/
-
 const initialBoardObj = gameBoard(spaces, gameContainer);
 const boardElements = initialBoardObj.spaceElementArray;
-//const newSet = flow(spaces, boardElements, gameContainer);
+
 
 const win = (array, boardPiece) => {
     let winner = false; //win is set to false by default
@@ -117,6 +116,8 @@ const win = (array, boardPiece) => {
             winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([0, 4, 8])) {
             winner = true;
+        } else if (JSON.stringify(boardArray) === JSON.stringify([0, 3, 6])) {
+            winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([1, 4, 7])) {
             winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([2, 4, 6])) {
@@ -127,20 +128,12 @@ const win = (array, boardPiece) => {
             winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([6, 7, 8])) {
             winner = true;
-        };
+        }
     };
-
-    
-    /*
-    if (winner === false) {
-        //if winner is false when this is called, I think I can instantiate another round here
-
-    }*/
-
     return { winner, piece }
 }
 
-function winChecker(boardArray) {
+function winChecker(boardArray, parent) {
     let winCheck = win(boardArray, X);
     if (winCheck.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", parent);
