@@ -55,6 +55,7 @@ const gameBoard = (gameSpaces, parent) => {
                 removeChildren(parent);  
                 let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, X);
                 let newBoardObj = gameBoard(newSpaceArray, parent);
+                winChecker(newBoardObj.gameSpaces, parent);
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
@@ -70,7 +71,7 @@ const gameBoard = (gameSpaces, parent) => {
         };
 
     }
-    return { newBoardObj };
+    return { spaceElementArray, gameSpaces };
 };
 
 const initialBoardObj = gameBoard(spaces, gameContainer);
@@ -117,7 +118,7 @@ const win = (array, boardPiece) => {
     return { winner, piece }
 }
 
-function winChecker(boardArray) {
+function winChecker(boardArray, parent) {
     let winCheck = win(boardArray, X);
     if (winCheck.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", parent);
