@@ -38,7 +38,18 @@ let spaces = [
 
 const flowArray = [O];
 
-
+function flow (newFlowArray) {
+    let lastValue = (newFlowArray.length -1)
+    if (newFlowArray[lastValue] === X) {
+        newFlowArray.push(O);
+        return [newFlowArray, O];
+    } else if (newFlowArray[lastValue] === O) {
+        newFlowArray.push(X);
+        return [newFlowArray, X];
+    } else if (newFlowArray.length > 9) {
+        return null
+    }
+}
 
 const gameBoard = (gameSpaces, parent, newflowArray) => {
     let spaceElementArray = [];
@@ -46,19 +57,6 @@ const gameBoard = (gameSpaces, parent, newflowArray) => {
     function reviseSpaceArray(spaceArray, i, boardPiece) {
         spaceArray.splice(i, 1, boardPiece);
         return spaceArray;
-    }
-
-    function flow (newFlowArray) {
-        let lastValue = newFlowArray.length -1
-        if (newFlowArray[lastValue] === X) {
-            newFlowArray.push(O);
-            return [newFlowArray, O];
-        } else if (newFlowArray[lastValue] === O) {
-            newFlowArray.push(X);
-            return [newFlowArray, X];
-        } else if (newFlowArray.length > 8) {
-            return null
-        }
     }
 
     for (i = 0; i < gameSpaces.length; i++) {
@@ -75,7 +73,7 @@ const gameBoard = (gameSpaces, parent, newflowArray) => {
                 let move = moveArray[1];
                 let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
 
-                let newBoardObj = gameBoard(newSpaceArray, parent);
+                let newBoardObj = gameBoard(newSpaceArray, parent, flowArray);
                 winChecker(newBoardObj.gameSpaces, parent);
             });
             spaceElementArray.push(spaceElement);
