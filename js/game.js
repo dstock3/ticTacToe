@@ -1,4 +1,3 @@
-
 //Basic HTML Elements
 function elementBuilder (elType, className, parent) {
     const newElement = document.createElement(elType);
@@ -35,25 +34,27 @@ let spaces = [
     null, //position-6 bottom left
     null, //position-7 bottom middle
     null  //position-8 bottom right
-]; 
+];
 
-const flowArray = [];
+const flowArray = [O];
+const initialMoveCount = [];
 
 function flow (newFlowArray) {
-    if (newFlowArray === []) {
-        newFlowArray.push(X);
-        return [newFlowArray, X];
-    } else if (newFlowArray.pop() === X) {
+    let lastValue = (newFlowArray.length -1)
+    if (newFlowArray[lastValue] === X) {
         newFlowArray.push(O);
         return [newFlowArray, O];
-    } else if (newFlowArray.length >= 9) {
+    } else if (newFlowArray[lastValue] === O) {
+        newFlowArray.push(X);
+        return [newFlowArray, X];
+    } else if (newFlowArray.length > 9) {
         return null
     }
-}
+};
 
-const gameBoard = (gameSpaces, parent, newflowArray) => {
+const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
     let spaceElementArray = [];
-
+    
     function reviseSpaceArray(spaceArray, i, boardPiece) {
         spaceArray.splice(i, 1, boardPiece);
         return spaceArray;
@@ -67,14 +68,13 @@ const gameBoard = (gameSpaces, parent, newflowArray) => {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', () => {
                 removeChildren(parent);
+                moveCount.push(1);
                 let moveArray = flow(newflowArray);  
-                console.log(moveArray)
                 let flowArray = moveArray[0];
                 let move = moveArray[1];
                 let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
-
-                let newBoardObj = gameBoard(newSpaceArray, parent);
-                winChecker(newBoardObj.gameSpaces, parent);
+                let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
+                winChecker(newBoardObj.gameSpaces, parent, moveCount);
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
@@ -93,18 +93,15 @@ const gameBoard = (gameSpaces, parent, newflowArray) => {
     return { spaceElementArray, gameSpaces };
 };
 
-const initialBoardObj = gameBoard(spaces, gameContainer, flowArray);
-const boardElements = initialBoardObj.spaceElementArray;
-
+const initialBoardObj = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
 
 const win = (array, boardPiece) => {
-    let winner = false; //win is set to false by default
-    let piece = boardPiece;
+    let winner = false;
     let boardArray = [];
 
     for (i = 0; i < array.length; i++) {
         
-        if (array[i] === piece) {
+        if (array[i] === boardPiece) {
             boardArray.push(i)
         };
     };
@@ -128,10 +125,12 @@ const win = (array, boardPiece) => {
             winner = true;
         }
     };
-    return { winner, piece }
+    return { winner }
 }
 
-function winChecker(boardArray, parent) {
+function winChecker(boardArray, parent, moveCount) {
+    
+    console.log(moveCount)
     let winCheck = win(boardArray, X);
     if (winCheck.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", parent);
@@ -145,13 +144,14 @@ function winChecker(boardArray, parent) {
         let winContent = document.createTextNode("Player 2 has won!");
         winMessage.appendChild(winContent);
     };
-    
-    //else if winCheck = false, instantiate a new round */
+
+    if ((winCheck.winner === false) && (moveCount.length === 9)) {
+        let tieMessage = elementBuilder("h2", "win-result", parent);
+        let tieContent = document.createTextNode("It's a tie!");
+        tieMessage.appendChild(tieContent);
+    };
+
 };
-
-//winChecker(exampleArray, gameContainer);
-
-
 
 
 
