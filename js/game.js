@@ -36,9 +36,8 @@ let spaces = [
     null  //position-8 bottom right
 ];
 
-const initialMoveCount = 0;
-
 const flowArray = [O];
+const initialMoveCount = [];
 
 function flow (newFlowArray) {
     let lastValue = (newFlowArray.length -1)
@@ -51,11 +50,11 @@ function flow (newFlowArray) {
     } else if (newFlowArray.length > 9) {
         return null
     }
-}
+};
 
 const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
     let spaceElementArray = [];
-
+    
     function reviseSpaceArray(spaceArray, i, boardPiece) {
         spaceArray.splice(i, 1, boardPiece);
         return spaceArray;
@@ -69,12 +68,12 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', () => {
                 removeChildren(parent);
+                moveCount.push(1);
                 let moveArray = flow(newflowArray);  
                 let flowArray = moveArray[0];
                 let move = moveArray[1];
                 let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
-
-                let newBoardObj = gameBoard(newSpaceArray, parent, flowArray);
+                let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
                 winChecker(newBoardObj.gameSpaces, parent, moveCount);
             });
             spaceElementArray.push(spaceElement);
@@ -95,14 +94,10 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
 };
 
 const initialBoardObj = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
-const boardElements = initialBoardObj.spaceElementArray;
 
-const win = (array, boardPiece, moveCount) => {
+const win = (array, boardPiece) => {
     let winner = false;
     let boardArray = [];
-    moveCount += 1;
-    console.log(moveCount);
-    
 
     for (i = 0; i < array.length; i++) {
         
@@ -130,37 +125,31 @@ const win = (array, boardPiece, moveCount) => {
             winner = true;
         }
     };
-    return { winner, moveCount }
+    return { winner }
 }
 
 function winChecker(boardArray, parent, moveCount) {
-    let winCheck = win(boardArray, X, moveCount);
+    
+    console.log(moveCount)
+    let winCheck = win(boardArray, X);
     if (winCheck.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", parent);
         let winContent = document.createTextNode("Player 1 has won!");
         winMessage.appendChild(winContent);
     };
 
-    if ((winCheck.winner === false) && (moveCount === 9)) {
-        let tieMessage = elementBuilder("h2", "win-result", parent);
-        let tieContent = document.createTextNode("It's a tie!");
-        tieMessage.appendChild(tieContent);
-
-    }
-
-    winCheck = win(boardArray, O, moveCount);
+    winCheck = win(boardArray, O);
     if (winCheck.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", parent);
         let winContent = document.createTextNode("Player 2 has won!");
         winMessage.appendChild(winContent);
     };
 
-    if ((winCheck.winner === false) && (moveCount === 9)) {
+    if ((winCheck.winner === false) && (moveCount.length === 9)) {
         let tieMessage = elementBuilder("h2", "win-result", parent);
         let tieContent = document.createTextNode("It's a tie!");
         tieMessage.appendChild(tieContent);
-
-    }
+    };
 
 };
 
