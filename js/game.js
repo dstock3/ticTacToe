@@ -109,6 +109,8 @@ const win = (array, boardPiece) => {
     for (i = 0; i < array.length; i++) {
         if (JSON.stringify(boardArray) === JSON.stringify([0, 1, 2])) {
             winner = true;
+        } else if (JSON.stringify(boardArray) === JSON.stringify([3, 4, 5])) {
+            winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([0, 4, 8])) {
             winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([0, 3, 6])) {
@@ -118,8 +120,6 @@ const win = (array, boardPiece) => {
         } else if (JSON.stringify(boardArray) === JSON.stringify([2, 4, 6])) {
             winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([2, 5, 8])) {
-            winner = true;
-        } else if (JSON.stringify(boardArray) === JSON.stringify([3, 4, 5])) {
             winner = true;
         } else if (JSON.stringify(boardArray) === JSON.stringify([6, 7, 8])) {
             winner = true;
