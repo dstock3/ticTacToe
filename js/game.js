@@ -107,23 +107,23 @@ const win = (array, boardPiece) => {
     };
 
     for (i = 0; i < array.length; i++) {
-        if (JSON.stringify(boardArray) === JSON.stringify([0, 1, 2])) {
+        if (boardArray.includes(0) && boardArray.includes(1) && boardArray.includes(2)) {
             winner = true;
-        } else if (JSON.stringify(boardArray) === JSON.stringify([3, 4, 5])) {
+        } else if (boardArray.includes(3) && boardArray.includes(4) && boardArray.includes(5)) {
             winner = true;
-        } else if (JSON.stringify(boardArray) === JSON.stringify([0, 4, 8])) {
+        } else if (boardArray.includes(0) && boardArray.includes(4) && boardArray.includes(8)) {
             winner = true;
-        } else if (JSON.stringify(boardArray) === JSON.stringify([0, 3, 6])) {
+        } else if (boardArray.includes(0) && boardArray.includes(3) && boardArray.includes(6)) {
             winner = true;
-        } else if (JSON.stringify(boardArray) === JSON.stringify([1, 4, 7])) {
+        } else if (boardArray.includes(1) && boardArray.includes(4) && boardArray.includes(7)) {
             winner = true;
-        } else if (JSON.stringify(boardArray) === JSON.stringify([2, 4, 6])) {
+        } else if (boardArray.includes(2) && boardArray.includes(4) && boardArray.includes(6)) {
             winner = true;
-        } else if (JSON.stringify(boardArray) === JSON.stringify([2, 5, 8])) {
+        } else if (boardArray.includes(2) && boardArray.includes(5) && boardArray.includes(8)) {
             winner = true;
-        } else if (JSON.stringify(boardArray) === JSON.stringify([6, 7, 8])) {
+        } else if (boardArray.includes(6) && boardArray.includes(7) && boardArray.includes(8)) {
             winner = true;
-        }
+        };
     };
     return { winner }
 }
