@@ -100,7 +100,6 @@ const win = (array, boardPiece) => {
     let boardArray = [];
 
     for (i = 0; i < array.length; i++) {
-        
         if (array[i] === boardPiece) {
             boardArray.push(i)
         };
@@ -109,20 +108,28 @@ const win = (array, boardPiece) => {
     for (i = 0; i < array.length; i++) {
         if (boardArray.includes(0) && boardArray.includes(1) && boardArray.includes(2)) {
             winner = true;
+            return { winner }
         } else if (boardArray.includes(3) && boardArray.includes(4) && boardArray.includes(5)) {
             winner = true;
+            return { winner }
         } else if (boardArray.includes(0) && boardArray.includes(4) && boardArray.includes(8)) {
             winner = true;
+            return { winner }
         } else if (boardArray.includes(0) && boardArray.includes(3) && boardArray.includes(6)) {
             winner = true;
+            return { winner }
         } else if (boardArray.includes(1) && boardArray.includes(4) && boardArray.includes(7)) {
             winner = true;
+            return { winner }
         } else if (boardArray.includes(2) && boardArray.includes(4) && boardArray.includes(6)) {
             winner = true;
+            return { winner }
         } else if (boardArray.includes(2) && boardArray.includes(5) && boardArray.includes(8)) {
             winner = true;
+            return { winner }
         } else if (boardArray.includes(6) && boardArray.includes(7) && boardArray.includes(8)) {
             winner = true;
+            return { winner }
         };
     };
     return { winner }
@@ -130,22 +137,22 @@ const win = (array, boardPiece) => {
 
 function winChecker(boardArray, parent, moveCount) {
     
-    console.log(moveCount)
-    let winCheck = win(boardArray, X);
-    if (winCheck.winner === true) {
+    let winCheckX = win(boardArray, X);
+    let winCheckO = win(boardArray, O);
+    
+    if (winCheckX.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", parent);
         let winContent = document.createTextNode("Player 1 has won!");
         winMessage.appendChild(winContent);
     };
 
-    winCheck = win(boardArray, O);
-    if (winCheck.winner === true) {
+    if (winCheckO.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", parent);
         let winContent = document.createTextNode("Player 2 has won!");
         winMessage.appendChild(winContent);
     };
 
-    if ((winCheck.winner === false) && (moveCount.length === 9)) {
+    if ((winCheckX.winner === false) && (winCheckO.winner === false) && (moveCount.length === 9)) {
         let tieMessage = elementBuilder("h2", "win-result", parent);
         let tieContent = document.createTextNode("It's a tie!");
         tieMessage.appendChild(tieContent);
