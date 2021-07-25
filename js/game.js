@@ -74,7 +74,7 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
                 let move = moveArray[1];
                 let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
                 let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
-                winChecker(newBoardObj.gameSpaces, parent, moveCount);
+                let winResult = winChecker(newBoardObj.gameSpaces, parent, moveCount);
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {

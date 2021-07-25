@@ -71,6 +71,8 @@ body {
 }
 
 .play-again {
+    position: absolute;
+    top: 80%;
     display: block;
     font-size: 1em;
     padding: 5px;
