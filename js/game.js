@@ -135,27 +135,53 @@ const win = (array, boardPiece) => {
     return { winner }
 }
 
+function buttonBuilder(buttonClass, spanClass, parent) {
+    let button = elementBuilder("button", buttonClass, parent);
+    button.type = "button";
+    let span = elementBuilder("span", spanClass, button);
+    let buttonBuild = [button, span];
+    return buttonBuild;
+};
+
+function playButton(parent) {
+    let playAgain = buttonBuilder("play-again", "button-text", parent);
+    let playButton = playAgain[0];
+    let playSpan = playAgain[1];
+    let playMessage = document.createTextNode("Play Again!");
+    playSpan.appendChild(playMessage);
+    return [playButton, playSpan];
+}
+
+
+
+
 function winChecker(boardArray, parent, moveCount) {
     
-    let winCheckX = win(boardArray, X);
-    let winCheckO = win(boardArray, O);
+    let scenarioX = win(boardArray, X);
+    let scenarioO = win(boardArray, O);
     
-    if (winCheckX.winner === true) {
+    if (scenarioX.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", parent);
         let winContent = document.createTextNode("Player 1 has won!");
         winMessage.appendChild(winContent);
+        playButton(winMessage);
+        return true
     };
 
-    if (winCheckO.winner === true) {
+    if (scenarioO.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", parent);
         let winContent = document.createTextNode("Player 2 has won!");
         winMessage.appendChild(winContent);
+        playButton(winMessage);
+        return true
     };
 
-    if ((winCheckX.winner === false) && (winCheckO.winner === false) && (moveCount.length === 9)) {
+    if ((scenarioX.winner === false) && (scenarioO.winner === false) && (moveCount.length === 9)) {
         let tieMessage = elementBuilder("h2", "win-result", parent);
         let tieContent = document.createTextNode("It's a tie!");
         tieMessage.appendChild(tieContent);
+        playButton(tieMessage);
+        return true
     };
 
 };

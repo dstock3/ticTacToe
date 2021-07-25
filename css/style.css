@@ -3,6 +3,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: black;
+    color: rgb(250, 168, 243);
 }
 
 .head {
@@ -33,37 +35,37 @@ body {
 }
 
 #position-0 {
-    border-bottom: 5px solid black;
-    border-right: 5px solid black;
+    border-bottom: 5px solid rgb(250, 168, 243);
+    border-right: 5px solid rgb(250, 168, 243);
 }
 
 #position-1 {
-    border-bottom: 5px solid black;
+    border-bottom: 5px solid rgb(250, 168, 243);
 }
 
 #position-2 {
-    border-bottom: 5px solid black;
-    border-left: 5px solid black;
+    border-bottom: 5px solid rgb(250, 168, 243);
+    border-left: 5px solid rgb(250, 168, 243);
 }
 
 #position-3 {
-    border-bottom: 5px solid black;
-    border-right: 5px solid black;
+    border-bottom: 5px solid rgb(250, 168, 243);
+    border-right: 5px solid rgb(250, 168, 243);
 }
 
 #position-4 {
-    border-bottom: 5px solid black;
-    border-right: 5px solid black;
+    border-bottom: 5px solid rgb(250, 168, 243);
+    border-right: 5px solid rgb(250, 168, 243);
 }
 
 #position-5 {
-    border-bottom: 5px solid black;
+    border-bottom: 5px solid rgb(250, 168, 243);
 }
 
 #position-6 {
-    border-right: 5px solid black;
+    border-right: 5px solid rgb(250, 168, 243);
 }
 
 #position-7 {
-    border-right: 5px solid black;
+    border-right: 5px solid rgb(250, 168, 243);
 }
