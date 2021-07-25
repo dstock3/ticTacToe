@@ -146,8 +146,9 @@ function buttonBuilder(buttonClass, spanClass, parent) {
 function playButton(parent) {
     let playAgain = buttonBuilder("play-again", "button-text", parent);
     let playButton = playAgain[0];
+    playButton.setAttribute("onClick", "window.location.reload();");
     let playSpan = playAgain[1];
-    let playMessage = document.createTextNode("Play Again!");
+    let playMessage = document.createTextNode("Play Again");
     playSpan.appendChild(playMessage);
     return [playButton, playSpan];
 }

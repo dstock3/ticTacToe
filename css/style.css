@@ -69,3 +69,9 @@ body {
 #position-7 {
     border-right: 5px solid rgb(250, 168, 243);
 }
+
+.play-again {
+    display: block;
+    font-size: 1em;
+    padding: 5px;
+}
