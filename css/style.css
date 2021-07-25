@@ -5,6 +5,7 @@ body {
     align-items: center;
     background-color: black;
     color: rgb(250, 168, 243);
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .head {

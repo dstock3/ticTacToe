@@ -14,7 +14,7 @@ function removeChildren(parent) {
 
 const body = document.getElementsByTagName("body")[0];
 const gameHeader = elementBuilder("h1", "head", body);
-const headContent = document.createTextNode("Tic Tac Toe!");
+const headContent = document.createTextNode("Tic-Tac-Toe");
 gameHeader.appendChild(headContent);
 const gameContainer = elementBuilder("div", "game-container", body);
 
