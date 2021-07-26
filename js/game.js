@@ -143,13 +143,15 @@ function buttonBuilder(buttonClass, spanClass, parent) {
     return buttonBuild;
 };
 
-function playButton(parent) {
+function playButton(parent, grandparent) {
     let playAgain = buttonBuilder("play-again", "button-text", parent);
     let playButton = playAgain[0];
-    playButton.setAttribute("onClick", "window.location.reload();");
     let playSpan = playAgain[1];
     let playMessage = document.createTextNode("Play Again");
     playSpan.appendChild(playMessage);
+    playButton.addEventListener('click', () => {
+        removeChildren(grandparent);
+    });
     return [playButton, playSpan];
 }
 
@@ -164,24 +166,27 @@ function winChecker(boardArray, parent, moveCount) {
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 1 has won!");
         winMessage.appendChild(winContent);
-        playButton(messageContainer);
-        return true
+        playButton(messageContainer, parent);
+        let newBoardObj = gameBoard(spaces, grandparent, flowArray, initialMoveCount);
+        return newBoardObj
     };
 
     if (scenarioO.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 2 has won!");
         winMessage.appendChild(winContent);
-        playButton(messageContainer);
-        return true
+        playButton(messageContainer, parent);
+        let newBoardObj = gameBoard(spaces, grandparent, flowArray, initialMoveCount);
+        return newBoardObj
     };
 
     if ((scenarioX.winner === false) && (scenarioO.winner === false) && (moveCount.length === 9)) {
         let tieMessage = elementBuilder("h2", "win-result", messageContainer);
         let tieContent = document.createTextNode("It's a tie!");
         tieMessage.appendChild(tieContent);
-        playButton(messageContainer);
-        return true
+        playButton(messageContainer, parent);
+        let newBoardObj = gameBoard(spaces, grandparent, flowArray, initialMoveCount);
+        return newBoardObj
     };
 
 };
