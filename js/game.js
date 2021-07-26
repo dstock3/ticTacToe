@@ -153,35 +153,34 @@ function playButton(parent) {
     return [playButton, playSpan];
 }
 
-
-
-
 function winChecker(boardArray, parent, moveCount) {
+
+    let messageContainer = elementBuilder("div", "message-container", parent);
     
     let scenarioX = win(boardArray, X);
     let scenarioO = win(boardArray, O);
     
     if (scenarioX.winner === true) {
-        let winMessage = elementBuilder("h2", "win-result", parent);
+        let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 1 has won!");
         winMessage.appendChild(winContent);
-        playButton(winMessage);
+        playButton(messageContainer);
         return true
     };
 
     if (scenarioO.winner === true) {
-        let winMessage = elementBuilder("h2", "win-result", parent);
+        let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 2 has won!");
         winMessage.appendChild(winContent);
-        playButton(winMessage);
+        playButton(messageContainer);
         return true
     };
 
     if ((scenarioX.winner === false) && (scenarioO.winner === false) && (moveCount.length === 9)) {
-        let tieMessage = elementBuilder("h2", "win-result", parent);
+        let tieMessage = elementBuilder("h2", "win-result", messageContainer);
         let tieContent = document.createTextNode("It's a tie!");
         tieMessage.appendChild(tieContent);
-        playButton(tieMessage);
+        playButton(messageContainer);
         return true
     };
 
