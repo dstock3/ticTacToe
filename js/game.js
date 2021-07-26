@@ -74,10 +74,7 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
                 let move = moveArray[1];
                 let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
                 let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
-                let winResult = winChecker(newBoardObj.gameSpaces, parent, moveCount);
-                if (winResult === true) {
-                    let newGame = gameBoard(gameSpaces, parent, newflowArray, moveCount)
-                }
+                let winResult = winChecker(newBoardObj.gameSpaces, parent, moveCount, gameSpaces, newflowArray);
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
@@ -146,15 +143,12 @@ function buttonBuilder(buttonClass, spanClass, parent) {
     return buttonBuild;
 };
 
-function playButton(parent, grandparent) {
+function playButton(parent) {
     let playAgain = buttonBuilder("play-again", "button-text", parent);
     let playButton = playAgain[0];
     let playSpan = playAgain[1];
     let playMessage = document.createTextNode("Play Again");
     playSpan.appendChild(playMessage);
-    playButton.addEventListener('click', () => {
-        removeChildren(grandparent);
-    });
     return [playButton, playSpan];
 }
 
@@ -169,24 +163,36 @@ function winChecker(boardArray, parent, moveCount) {
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 1 has won!");
         winMessage.appendChild(winContent);
-        playButton(messageContainer, parent);
-        return [true]
+        let newPlayButton = playButton(messageContainer);
+        let playButtonElement = newPlayButton[0];
+        playButtonElement.addEventListener('click', () => {
+            removeChildren(parent);
+        });
+        return true
     };
 
     if (scenarioO.winner === true) {
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 2 has won!");
         winMessage.appendChild(winContent);
-        playButton(messageContainer, parent);
-        return [true]
+        let newPlayButton = playButton(messageContainer);
+        let playButtonElement = newPlayButton[0];
+        playButtonElement.addEventListener('click', () => {
+            removeChildren(parent);
+        });
+        return true
     };
 
     if ((scenarioX.winner === false) && (scenarioO.winner === false) && (moveCount.length === 9)) {
         let tieMessage = elementBuilder("h2", "win-result", messageContainer);
         let tieContent = document.createTextNode("It's a tie!");
         tieMessage.appendChild(tieContent);
-        playButton(messageContainer, parent);
-        return [true]
+        let newPlayButton = playButton(messageContainer);
+        let playButtonElement = newPlayButton[0];
+        playButtonElement.addEventListener('click', () => {
+            removeChildren(parent);
+        });
+        return true
     };
 };
 
