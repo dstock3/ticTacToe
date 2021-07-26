@@ -19,6 +19,8 @@ body {
     justify-content: center;
     width: 550px;
     height: 550px;
+    border: solid rgb(240, 163, 232) 3px;
+    border-radius: 10px;
 }
 
 .win-result {
