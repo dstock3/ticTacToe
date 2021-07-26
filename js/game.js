@@ -75,6 +75,9 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
                 let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
                 let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
                 let winResult = winChecker(newBoardObj.gameSpaces, parent, moveCount);
+                if (winResult === true) {
+                    let newGame = gameBoard(gameSpaces, parent, newflowArray, moveCount)
+                }
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
@@ -167,8 +170,7 @@ function winChecker(boardArray, parent, moveCount) {
         let winContent = document.createTextNode("Player 1 has won!");
         winMessage.appendChild(winContent);
         playButton(messageContainer, parent);
-        let newBoardObj = gameBoard(spaces, grandparent, flowArray, initialMoveCount);
-        return newBoardObj
+        return [true]
     };
 
     if (scenarioO.winner === true) {
@@ -176,8 +178,7 @@ function winChecker(boardArray, parent, moveCount) {
         let winContent = document.createTextNode("Player 2 has won!");
         winMessage.appendChild(winContent);
         playButton(messageContainer, parent);
-        let newBoardObj = gameBoard(spaces, grandparent, flowArray, initialMoveCount);
-        return newBoardObj
+        return [true]
     };
 
     if ((scenarioX.winner === false) && (scenarioO.winner === false) && (moveCount.length === 9)) {
@@ -185,10 +186,8 @@ function winChecker(boardArray, parent, moveCount) {
         let tieContent = document.createTextNode("It's a tie!");
         tieMessage.appendChild(tieContent);
         playButton(messageContainer, parent);
-        let newBoardObj = gameBoard(spaces, grandparent, flowArray, initialMoveCount);
-        return newBoardObj
+        return [true]
     };
-
 };
 
 
