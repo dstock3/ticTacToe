@@ -37,6 +37,10 @@ body {
     height: 180px;
 }
 
+.space:hover {
+    background-color: rgb(26, 1, 134);
+}
+
 #position-0 {
     border-bottom: 5px solid rgb(240, 163, 232);
     border-right: 5px solid rgb(240, 163, 232);
