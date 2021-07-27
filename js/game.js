@@ -75,9 +75,24 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
                 let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
                 let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
                 let winResult = winChecker(newBoardObj.gameSpaces, parent, moveCount);
-                if (winResult) {
-                    //let newGame = gameBoard(gameSpaces, parent, newflowArray, moveCount);
-                }
+                console.log(winResult)
+                /*if (winResult === true) {
+                    let blankElements = document.getElementsByClassName("blank");
+                    for (i = 0; i < blankElements.length; i++) {
+                        let blankElement = blankElements[i];
+                        blankElement.removeEventListener("click", () => {
+                            removeChildren(parent);
+                            moveCount.push(1);
+                            let moveArray = flow(newflowArray);  
+                            let flowArray = moveArray[0];
+                            let move = moveArray[1];
+                            let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
+                            let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
+                            let winResult = winChecker(newBoardObj.gameSpaces, parent, moveCount);
+                            return winResult
+                        });
+                    }
+                }*/
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
@@ -155,6 +170,26 @@ function playButton(parent) {
     return [playButton, playSpan];
 }
 
+function resetValues(spaceValues, flowArrayValues, initialMoveCountValues) {
+    spaceValues = [
+        null, //position-0 top left
+        null, //position-1 top middle
+        null, //position-2 top right
+        null, //position-3 mid left
+        null, //position-4 mid middle
+        null, //position-5 mid right 
+        null, //position-6 bottom left
+        null, //position-7 bottom middle
+        null  //position-8 bottom right
+    ];
+
+    flowArrayValues = [O];
+    initialMoveCountValues = [];
+
+    return [spaceValues, flowArrayValues, initialMoveCountValues];
+}
+
+
 function winChecker(boardArray, parent, moveCount) {
 
     let messageContainer = elementBuilder("div", "message-container", parent);
@@ -182,8 +217,8 @@ function winChecker(boardArray, parent, moveCount) {
                 null  //position-8 bottom right
             ];
             
-            const flowArray = [O];
-            const initialMoveCount = [];
+            let flowArray = [O];
+            let initialMoveCount = [];
             let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
         return true
@@ -209,8 +244,8 @@ function winChecker(boardArray, parent, moveCount) {
                 null  //position-8 bottom right
             ];
             
-            const flowArray = [O];
-            const initialMoveCount = [];
+            let flowArray = [O];
+            let initialMoveCount = [];
             let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
         return true
@@ -236,8 +271,8 @@ function winChecker(boardArray, parent, moveCount) {
                 null  //position-8 bottom right
             ];
             
-            const flowArray = [O];
-            const initialMoveCount = [];
+            let flowArray = [O];
+            let initialMoveCount = [];
             let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
         return true
