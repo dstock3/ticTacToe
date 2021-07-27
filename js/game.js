@@ -60,40 +60,30 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
         return spaceArray;
     }
 
+    const newMove = (newIndexValue) => {
+        removeChildren(parent);
+        moveCount.push(1);
+        let moveArray = flow(newflowArray);  
+        let flowArray = moveArray[0];
+        let move = moveArray[1];
+        let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
+        let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
+        let winResult = winChecker(newBoardObj.gameSpaces, parent, moveCount);
+        return winResult
+        }
+
     for (i = 0; i < gameSpaces.length; i++) {
         let newIndexValue = i;
         let spaceElement = elementBuilder("div", "space", parent);
         spaceElement.setAttribute("id", `position-${newIndexValue}`);
         if (gameSpaces[i] === null) {
             spaceElement.classList.add("blank");
-            spaceElement.addEventListener('click', () => {
-                removeChildren(parent);
-                moveCount.push(1);
-                let moveArray = flow(newflowArray);  
-                let flowArray = moveArray[0];
-                let move = moveArray[1];
-                let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
-                let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
-                let winResult = winChecker(newBoardObj.gameSpaces, parent, moveCount);
+            spaceElement.addEventListener('click', function executeMove() {
+                let winResult = newMove(newIndexValue);
                 console.log(winResult)
-                /*if (winResult === true) {
-                    let blankElements = document.getElementsByClassName("blank");
-                    for (i = 0; i < blankElements.length; i++) {
-                        let blankElement = blankElements[i];
-                        blankElement.removeEventListener("click", () => {
-                            removeChildren(parent);
-                            moveCount.push(1);
-                            let moveArray = flow(newflowArray);  
-                            let flowArray = moveArray[0];
-                            let move = moveArray[1];
-                            let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
-                            let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
-                            let winResult = winChecker(newBoardObj.gameSpaces, parent, moveCount);
-                            return winResult
-                        });
-                    }
-                }*/
+
             });
+
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
             let xContent = document.createTextNode(X);
