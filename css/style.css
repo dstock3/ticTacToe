@@ -19,6 +19,8 @@ body {
     justify-content: center;
     width: 550px;
     height: 550px;
+    border: solid rgb(240, 163, 232) 3px;
+    border-radius: 10px;
 }
 
 .win-result {
@@ -33,6 +35,10 @@ body {
     text-align: center;
     width: 180px;
     height: 180px;
+}
+
+.space:hover {
+    background-color: rgb(26, 1, 134);
 }
 
 #position-0 {
