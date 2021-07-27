@@ -75,6 +75,9 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
                 let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
                 let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
                 let winResult = winChecker(newBoardObj.gameSpaces, parent, moveCount);
+                if (winResult) {
+                    //let newGame = gameBoard(gameSpaces, parent, newflowArray, moveCount);
+                }
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
@@ -146,7 +149,6 @@ function buttonBuilder(buttonClass, spanClass, parent) {
 function playButton(parent) {
     let playAgain = buttonBuilder("play-again", "button-text", parent);
     let playButton = playAgain[0];
-    playButton.setAttribute("onClick", "window.location.reload();");
     let playSpan = playAgain[1];
     let playMessage = document.createTextNode("Play Again");
     playSpan.appendChild(playMessage);
@@ -164,7 +166,26 @@ function winChecker(boardArray, parent, moveCount) {
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 1 has won!");
         winMessage.appendChild(winContent);
-        playButton(messageContainer);
+        let newPlayButton = playButton(messageContainer);
+        let playButtonElement = newPlayButton[0];
+        playButtonElement.addEventListener('click', () => {
+            removeChildren(parent);
+            let spaces = [
+                null, //position-0 top left
+                null, //position-1 top middle
+                null, //position-2 top right
+                null, //position-3 mid left
+                null, //position-4 mid middle
+                null, //position-5 mid right 
+                null, //position-6 bottom left
+                null, //position-7 bottom middle
+                null  //position-8 bottom right
+            ];
+            
+            const flowArray = [O];
+            const initialMoveCount = [];
+            let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
+        });
         return true
     };
 
@@ -172,7 +193,26 @@ function winChecker(boardArray, parent, moveCount) {
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 2 has won!");
         winMessage.appendChild(winContent);
-        playButton(messageContainer);
+        let newPlayButton = playButton(messageContainer);
+        let playButtonElement = newPlayButton[0];
+        playButtonElement.addEventListener('click', () => {
+            removeChildren(parent);
+            let spaces = [
+                null, //position-0 top left
+                null, //position-1 top middle
+                null, //position-2 top right
+                null, //position-3 mid left
+                null, //position-4 mid middle
+                null, //position-5 mid right 
+                null, //position-6 bottom left
+                null, //position-7 bottom middle
+                null  //position-8 bottom right
+            ];
+            
+            const flowArray = [O];
+            const initialMoveCount = [];
+            let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
+        });
         return true
     };
 
@@ -180,10 +220,28 @@ function winChecker(boardArray, parent, moveCount) {
         let tieMessage = elementBuilder("h2", "win-result", messageContainer);
         let tieContent = document.createTextNode("It's a tie!");
         tieMessage.appendChild(tieContent);
-        playButton(messageContainer);
+        let newPlayButton = playButton(messageContainer);
+        let playButtonElement = newPlayButton[0];
+        playButtonElement.addEventListener('click', () => {
+            removeChildren(parent);
+            let spaces = [
+                null, //position-0 top left
+                null, //position-1 top middle
+                null, //position-2 top right
+                null, //position-3 mid left
+                null, //position-4 mid middle
+                null, //position-5 mid right 
+                null, //position-6 bottom left
+                null, //position-7 bottom middle
+                null  //position-8 bottom right
+            ];
+            
+            const flowArray = [O];
+            const initialMoveCount = [];
+            let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
+        });
         return true
     };
-
 };
 
 
