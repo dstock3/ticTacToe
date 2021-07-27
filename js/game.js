@@ -84,6 +84,8 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
                     let blankElements = document.getElementsByClassName("blank");
                     for (y = 0; y < blankElements.length; y++) {
                         blankElements[y].classList.remove("blank")
+                        reviseSpaceArray(gameSpaces, y, "void");
+                        console.log(gameSpaces)
                     }
                 };
             });
