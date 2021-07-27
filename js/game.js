@@ -80,10 +80,14 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', function executeMove() {
                 let winResult = newMove(newIndexValue);
-                console.log(winResult)
-
+                if (winResult) {
+                    let blankElements = document.getElementsByClassName("blank");
+                    for (x = 0; x < blankElements.length; x++) {
+                        let blankElement = blankElements[x];
+                        blankElement.removeEventListener('click', executeMove, true)
+                    }
+                }
             });
-
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
             let xContent = document.createTextNode(X);
