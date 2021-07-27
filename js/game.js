@@ -24,7 +24,7 @@ const X = "X";
 const O = "O";
 
 //for the initial game values
-let spaces = [
+const spaces = [
     null, //position-0 top left
     null, //position-1 top middle
     null, //position-2 top right
@@ -80,13 +80,12 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', function executeMove() {
                 let winResult = newMove(newIndexValue);
-                if (winResult) {
+                if (winResult === true) {
                     let blankElements = document.getElementsByClassName("blank");
-                    for (x = 0; x < blankElements.length; x++) {
-                        let blankElement = blankElements[x];
-                        blankElement.removeEventListener('click', executeMove, true)
+                    for (y = 0; y < blankElements.length; y++) {
+                        blankElements[y].classList.remove("blank")
                     }
-                }
+                };
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
@@ -110,7 +109,6 @@ const initialBoardObj = gameBoard(spaces, gameContainer, flowArray, initialMoveC
 const win = (array, boardPiece) => {
     let winner = false;
     let boardArray = [];
-
     for (i = 0; i < array.length; i++) {
         if (array[i] === boardPiece) {
             boardArray.push(i)
