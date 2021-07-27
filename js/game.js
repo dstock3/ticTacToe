@@ -76,7 +76,7 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
                 let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
                 let winResult = winChecker(newBoardObj.gameSpaces, parent, moveCount);
                 if (winResult) {
-                    let newGame = (gameSpaces, parent, newflowArray, moveCount);
+                    //let newGame = gameBoard(gameSpaces, parent, newflowArray, moveCount);
                 }
             });
             spaceElementArray.push(spaceElement);
@@ -170,6 +170,21 @@ function winChecker(boardArray, parent, moveCount) {
         let playButtonElement = newPlayButton[0];
         playButtonElement.addEventListener('click', () => {
             removeChildren(parent);
+            let spaces = [
+                null, //position-0 top left
+                null, //position-1 top middle
+                null, //position-2 top right
+                null, //position-3 mid left
+                null, //position-4 mid middle
+                null, //position-5 mid right 
+                null, //position-6 bottom left
+                null, //position-7 bottom middle
+                null  //position-8 bottom right
+            ];
+            
+            const flowArray = [O];
+            const initialMoveCount = [];
+            let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
         return true
     };
@@ -182,6 +197,21 @@ function winChecker(boardArray, parent, moveCount) {
         let playButtonElement = newPlayButton[0];
         playButtonElement.addEventListener('click', () => {
             removeChildren(parent);
+            let spaces = [
+                null, //position-0 top left
+                null, //position-1 top middle
+                null, //position-2 top right
+                null, //position-3 mid left
+                null, //position-4 mid middle
+                null, //position-5 mid right 
+                null, //position-6 bottom left
+                null, //position-7 bottom middle
+                null  //position-8 bottom right
+            ];
+            
+            const flowArray = [O];
+            const initialMoveCount = [];
+            let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
         return true
     };
@@ -194,6 +224,21 @@ function winChecker(boardArray, parent, moveCount) {
         let playButtonElement = newPlayButton[0];
         playButtonElement.addEventListener('click', () => {
             removeChildren(parent);
+            let spaces = [
+                null, //position-0 top left
+                null, //position-1 top middle
+                null, //position-2 top right
+                null, //position-3 mid left
+                null, //position-4 mid middle
+                null, //position-5 mid right 
+                null, //position-6 bottom left
+                null, //position-7 bottom middle
+                null  //position-8 bottom right
+            ];
+            
+            const flowArray = [O];
+            const initialMoveCount = [];
+            let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
         return true
     };
