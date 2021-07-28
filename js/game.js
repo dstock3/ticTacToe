@@ -232,7 +232,8 @@ function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins)
             let initialMoveCount = [];
             let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
-        return [true, xWinCount, playerOneProfile];
+        let winSet = [true, xWinCount, playerOneProfile]
+        return winSet
     };
 
     if (scenarioO.winner === true) {
@@ -260,7 +261,8 @@ function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins)
             let initialMoveCount = [];
             let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
-        return [true, oWinCount, playerTwoProfile];
+        let winSet = [true, oWinCount, playerTwoProfile];
+        return winSet
     };
 
     if ((scenarioX.winner === false) && (scenarioO.winner === false) && (moveCount.length === 9)) {
