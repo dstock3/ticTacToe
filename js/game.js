@@ -90,8 +90,11 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', function executeMove() {
                 let winSet = newMove(newIndexValue);
-                let winResult = winResult[0];
-                let winCount = winResult[1];
+                let winResult = winSet[0];
+                let winCount = winSet[1];
+                let winningProfile = winSet[3];
+                let winElement = document.createTextNode(winCount);
+                winningProfile.appendChild(winElement);
                 if (winResult === true) {
                     let blankElements = document.getElementsByClassName("blank");
                     for (y = 0; y < blankElements.length; y++) {
@@ -229,7 +232,7 @@ function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins)
             let initialMoveCount = [];
             let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
-        return [true, xWinCount];
+        return [true, xWinCount, playerOneProfile];
     };
 
     if (scenarioO.winner === true) {
@@ -257,7 +260,7 @@ function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins)
             let initialMoveCount = [];
             let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
-        return [true, oWinCount];
+        return [true, oWinCount, playerTwoProfile];
     };
 
     if ((scenarioX.winner === false) && (scenarioO.winner === false) && (moveCount.length === 9)) {
