@@ -23,6 +23,9 @@ const gameContainer = elementBuilder("div", "game-container", body);
 const X = "X";
 const O = "O";
 
+const playerOne = 0;
+const playerTwo = 0;
+
 //for the initial game values
 const spaces = [
     null, //position-0 top left
@@ -84,7 +87,8 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
                     let blankElements = document.getElementsByClassName("blank");
                     for (y = 0; y < blankElements.length; y++) {
                         blankElements[y].classList.remove("blank")
-                        reviseSpaceArray(gameSpaces, y, "void");
+                        gameSpaces[y] = "void";
+                        //reviseSpaceArray(gameSpaces, y, "void");
                         console.log(gameSpaces)
                     }
                 };
