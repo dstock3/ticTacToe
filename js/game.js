@@ -62,7 +62,7 @@ function flow (newFlowArray) {
     }
 };
 
-const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
+const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCount, playerTwoWinCount) => {
     let spaceElementArray = [];
     
     function reviseSpaceArray(spaceArray, i, boardPiece) {
@@ -78,7 +78,7 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
         let move = moveArray[1];
         let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
         let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
-        let winSet = winChecker(newBoardObj.gameSpaces, parent, moveCount, playerOne, playerTwo);
+        let winSet = winChecker(newBoardObj.gameSpaces, parent, moveCount, playerOneWinCount, playerTwoWinCount);
         return winSet
         }
 
@@ -122,7 +122,7 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
     return { spaceElementArray, gameSpaces };
 };
 
-const initialBoardObj = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
+const initialBoardObj = gameBoard(spaces, gameContainer, flowArray, initialMoveCount, playerOne, playerTwo);
 
 const win = (array, boardPiece) => {
     let winner = false;
