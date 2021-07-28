@@ -13,6 +13,11 @@ body {
     padding-bottom: 2.5%;
 }
 
+.master-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .game-container {
     display: flex;
     flex-wrap: wrap;

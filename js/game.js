@@ -16,8 +16,11 @@ const body = document.getElementsByTagName("body")[0];
 const gameHeader = elementBuilder("h1", "head", body);
 const headContent = document.createTextNode("Tic-Tac-Toe");
 gameHeader.appendChild(headContent);
-const gameContainer = elementBuilder("div", "game-container", body);
-
+const masterContainer = elementBuilder("div", "master-container", body)
+const gameContainer = elementBuilder("div", "game-container", masterContainer);
+const playerOneProfile = elementBuilder("div", "player-one", masterContainer);
+const playerTwoProfile = elementBuilder("div", "player-two", masterContainer);
+ 
 //Gameboard Setup
 
 const X = "X";
