@@ -18,6 +18,21 @@ body {
     flex-direction: row;
 }
 
+.player-one {
+    position: relative;
+    right: 15%;
+    font-size: 1.75em;
+
+}
+
+.player-two {
+    position: relative;
+    left: 15%;
+    font-size: 1.75em;
+    
+}
+
+
 .game-container {
     display: flex;
     flex-wrap: wrap;
