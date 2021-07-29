@@ -18,16 +18,20 @@ body {
     flex-direction: row;
 }
 
-.player-one {
-    position: relative;
-    right: 15%;
+.score {
     font-size: 1.75em;
+
 }
 
-.player-two {
+#player-one {
+    position: relative;
+    right: 15%;
+
+}
+
+#player-two {
     position: relative;
     left: 15%;
-    font-size: 1.75em;
 }
 
 
