@@ -20,16 +20,20 @@ gameHeader.appendChild(headContent);
 const masterContainer = elementBuilder("div", "master-container", body);
 const playerOneProfile = elementBuilder("div", "score", masterContainer);
 playerOneProfile.setAttribute("id", "player-one");
+const playerOneHeader = elementBuilder("div", "player-head", playerOneProfile)
 const playerOneContent = document.createTextNode("Player One:");
-playerOneProfile.appendChild(playerOneContent);
+playerOneHeader.appendChild(playerOneContent);
+const playerOneScoreCount = elementBuilder("div", "player-one-score", playerOneProfile)
 
 const mainContainer = elementBuilder("div", "main-container", masterContainer);
 const gameContainer = elementBuilder("div", "game-container", mainContainer);
 
 const playerTwoProfile = elementBuilder("div", "score", masterContainer);
 playerTwoProfile.setAttribute("id", "player-two");
+const playerTwoHeader = elementBuilder("div", "player-head", playerTwoProfile)
 const playerTwoContent = document.createTextNode("Player Two:");
-playerTwoProfile.appendChild(playerTwoContent);
+playerTwoHeader.appendChild(playerTwoContent);
+const playerTwoScoreCount = elementBuilder("div", "player-two-score", playerTwoProfile)
  
 //Gameboard Setup
 
@@ -100,7 +104,9 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
                 let winCount = winSet[1];
                 let winningProfile = winSet[2];
                 let winContent = document.createTextNode(winCount);
-                let winElement = elementBuilder("div", "score-count", winningProfile)
+                let winningClass = String(winningProfile.id +`-score`);
+                let winElement = document.getElementsByClassName(winningClass)[0];
+                removeChildren(winElement)
                 winElement.appendChild(winContent);
                 winningProfile.appendChild(winElement);
                 if (winResult === true) {
