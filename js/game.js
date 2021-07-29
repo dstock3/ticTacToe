@@ -221,7 +221,7 @@ function winChecker(boardArray, moveCount, playerOneWins, playerTwoWins) {
     
     if (scenarioX.winner === true) {
         let messageContainer = elementBuilder("div", "message-container", mainContainer);
-        let xWinCount = winCount(playerOneWins);
+        let xWinCount = playerOne + 1
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 1 has won!");
         winMessage.appendChild(winContent);
@@ -252,7 +252,7 @@ function winChecker(boardArray, moveCount, playerOneWins, playerTwoWins) {
 
     if (scenarioO.winner === true) {
         let messageContainer = elementBuilder("div", "message-container", mainContainer);
-        let oWinCount = winCount(playerTwoWins);
+        let oWinCount = playerTwo + 1
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 2 has won!");
         winMessage.appendChild(winContent);
@@ -311,10 +311,6 @@ function winChecker(boardArray, moveCount, playerOneWins, playerTwoWins) {
     };
 };
 
-function winCount(playerWins) {
-    playerWins = playerWins + 1;
-    return playerWins
-}
 
 
 
