@@ -98,8 +98,10 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
                 let winSet = newMove(newIndexValue);
                 let winResult = winSet[0];
                 let winCount = winSet[1];
-                let winningProfile = winSet[3];
-                let winElement = document.createTextNode(winCount);
+                let winningProfile = winSet[2];
+                let winContent = document.createTextNode(winCount);
+                let winElement = elementBuilder("div", "score-count", winningProfile)
+                winElement.appendChild(winContent);
                 winningProfile.appendChild(winElement);
                 if (winResult === true) {
                     let blankElements = document.getElementsByClassName("blank");
