@@ -84,7 +84,7 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
         let move = moveArray[1];
         let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
         let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
-        let winSet = winChecker(newBoardObj.gameSpaces, parent, moveCount, playerOneWinCount, playerTwoWinCount);
+        let winSet = winChecker(newBoardObj.gameSpaces, moveCount, playerOneWinCount, playerTwoWinCount);
         return winSet
         }
 
@@ -206,7 +206,7 @@ function resetValues(spaceValues, flowArrayValues, initialMoveCountValues) {
 }
 
 
-function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins) {
+function winChecker(boardArray, moveCount, playerOneWins, playerTwoWins) {
 
     let scenarioX = win(boardArray, X);
     let scenarioO = win(boardArray, O);

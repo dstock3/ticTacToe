@@ -62,10 +62,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 4.5em;
+    font-size: 4em;
     text-align: center;
-    width: 137px;
-    height: 137px;
+    width: 145px;
+    height: 145px;
 }
 
 .space:hover {
