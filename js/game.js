@@ -208,8 +208,6 @@ function resetValues(spaceValues, flowArrayValues, initialMoveCountValues) {
 
 function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins) {
 
-    
-    
     let scenarioX = win(boardArray, X);
     let scenarioO = win(boardArray, O);
     
@@ -222,7 +220,8 @@ function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins)
         let newPlayButton = playButton(messageContainer);
         let playButtonElement = newPlayButton[0];
         playButtonElement.addEventListener('click', () => {
-            removeChildren(parent);
+            removeChildren(messageContainer);
+            removeChildren(gameContainer);
             let spaces = [
                 null, //position-0 top left
                 null, //position-1 top middle
@@ -252,7 +251,8 @@ function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins)
         let newPlayButton = playButton(messageContainer);
         let playButtonElement = newPlayButton[0];
         playButtonElement.addEventListener('click', () => {
-            removeChildren(parent);
+            removeChildren(messageContainer);
+            removeChildren(gameContainer);
             let spaces = [
                 null, //position-0 top left
                 null, //position-1 top middle
@@ -281,7 +281,8 @@ function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins)
         let newPlayButton = playButton(messageContainer);
         let playButtonElement = newPlayButton[0];
         playButtonElement.addEventListener('click', () => {
-            removeChildren(parent);
+            removeChildren(messageContainer);
+            removeChildren(gameContainer);
             let spaces = [
                 null, //position-0 top left
                 null, //position-1 top middle
