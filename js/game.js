@@ -23,7 +23,9 @@ playerOneProfile.setAttribute("id", "player-one");
 const playerOneContent = document.createTextNode("Player One:");
 playerOneProfile.appendChild(playerOneContent);
 
-const gameContainer = elementBuilder("div", "game-container", masterContainer);
+const mainContainer = elementBuilder("div", "main-container", masterContainer);
+const gameContainer = elementBuilder("div", "game-container", mainContainer);
+
 const playerTwoProfile = elementBuilder("div", "score", masterContainer);
 playerTwoProfile.setAttribute("id", "player-two");
 const playerTwoContent = document.createTextNode("Player Two:");
@@ -206,12 +208,13 @@ function resetValues(spaceValues, flowArrayValues, initialMoveCountValues) {
 
 function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins) {
 
-    let messageContainer = elementBuilder("div", "message-container", parent);
+    
     
     let scenarioX = win(boardArray, X);
     let scenarioO = win(boardArray, O);
     
     if (scenarioX.winner === true) {
+        let messageContainer = elementBuilder("div", "message-container", mainContainer);
         let xWinCount = winCount(playerOneWins);
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 1 has won!");
@@ -241,6 +244,7 @@ function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins)
     };
 
     if (scenarioO.winner === true) {
+        let messageContainer = elementBuilder("div", "message-container", mainContainer);
         let oWinCount = winCount(playerTwoWins);
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
         let winContent = document.createTextNode("Player 2 has won!");
@@ -270,6 +274,7 @@ function winChecker(boardArray, parent, moveCount, playerOneWins, playerTwoWins)
     };
 
     if ((scenarioX.winner === false) && (scenarioO.winner === false) && (moveCount.length === 9)) {
+        let messageContainer = elementBuilder("div", "message-container", mainContainer);
         let tieMessage = elementBuilder("h2", "win-result", messageContainer);
         let tieContent = document.createTextNode("It's a tie!");
         tieMessage.appendChild(tieContent);

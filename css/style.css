@@ -18,8 +18,17 @@ body {
     flex-direction: row;
 }
 
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .score {
-    font-size: 1.75em;
+    font-size: 1.5em;
+    padding: 1.5%;
+    border: solid rgb(240, 163, 232) 3px;
+    border-radius: 10px;
+    max-height: 200px;
 
 }
 
@@ -39,8 +48,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 550px;
-    height: 550px;
+    width: 447px;
+    height: 447px;
     border: solid rgb(240, 163, 232) 3px;
     border-radius: 10px;
 }
@@ -53,10 +62,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 5em;
+    font-size: 4.5em;
     text-align: center;
-    width: 180px;
-    height: 180px;
+    width: 137px;
+    height: 137px;
 }
 
 .space:hover {
@@ -64,39 +73,39 @@ body {
 }
 
 #position-0 {
-    border-bottom: 5px solid rgb(240, 163, 232);
-    border-right: 5px solid rgb(240, 163, 232);
+    border-bottom: 4px solid rgb(240, 163, 232);
+    border-right: 4px solid rgb(240, 163, 232);
 }
 
 #position-1 {
-    border-bottom: 5px solid rgb(240, 163, 232);
+    border-bottom: 4px solid rgb(240, 163, 232);
 }
 
 #position-2 {
-    border-bottom: 5px solid rgb(240, 163, 232);
-    border-left: 5px solid rgb(240, 163, 232);
+    border-bottom: 4px solid rgb(240, 163, 232);
+    border-left: 4px solid rgb(240, 163, 232);
 }
 
 #position-3 {
-    border-bottom: 5px solid rgb(240, 163, 232);
-    border-right: 5px solid rgb(240, 163, 232);
+    border-bottom: 4px solid rgb(240, 163, 232);
+    border-right: 4px solid rgb(240, 163, 232);
 }
 
 #position-4 {
-    border-bottom: 5px solid rgb(240, 163, 232);
-    border-right: 5px solid rgb(240, 163, 232);
+    border-bottom: 4px solid rgb(240, 163, 232);
+    border-right: 4px solid rgb(240, 163, 232);
 }
 
 #position-5 {
-    border-bottom: 5px solid rgb(240, 163, 232);
+    border-bottom: 4px solid rgb(240, 163, 232);
 }
 
 #position-6 {
-    border-right: 5px solid rgb(240, 163, 232);
+    border-right: 4px solid rgb(240, 163, 232);
 }
 
 #position-7 {
-    border-right: 5px solid rgb(240, 163, 232);
+    border-right: 4px solid rgb(240, 163, 232);
 }
 
 .message-container {
@@ -111,4 +120,6 @@ body {
     color: black;
     font-size: 1em;
     padding: 7px;
+    width: 150px;
+    align-self: center;
 }
