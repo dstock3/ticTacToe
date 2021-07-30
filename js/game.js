@@ -93,6 +93,21 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
         let winSet = winChecker(newBoardObj.gameSpaces, moveCount, playerOneWinCount, playerTwoWinCount);
         return winSet
         }
+    
+    const scoreKeeper = (winSet, playerOneWinCount, playerTwoWinCount) => {
+        let winResult = winSet[0];
+        let winCount = winSet[1];
+        playerOneWinCount = playerOneWinCount + winCount;
+        let winCount2 = winSet[2];
+        playerTwoWinCount = playerTwoWinCount + winCount2;
+        let winningProfile = winSet[3];
+        let winContent = document.createTextNode(winCount);
+        let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
+        removeChildren(winElement)
+        winElement.appendChild(winContent);
+        winningProfile.appendChild(winElement);
+        return winResult
+    }
 
     for (i = 0; i < gameSpaces.length; i++) {
         let newIndexValue = i;
@@ -102,7 +117,8 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', function executeMove() {
                 let winSet = newMove(newIndexValue);
-                let winResult = winSet[0];
+                let winResult = scoreKeeper(winSet, playerOneWinCount, playerTwoWinCount);
+                
                 if (winResult) {
 
                     
@@ -129,7 +145,7 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
         };
 
     }
-    return { spaceElementArray, gameSpaces };
+    return { spaceElementArray, gameSpaces, playerOneWinCount, playerTwoWinCount };
 };
 
 const initialBoardObj = gameBoard(spaces, gameContainer, flowArray, initialMoveCount, playerOne, playerTwo);
@@ -223,16 +239,6 @@ function winChecker(boardArray, moveCount, playerOneWins, playerTwoWins) {
         });
 
         let winSet = [true, 1, 0, playerOneProfile]
-        let winCount = winSet[1];
-        playerOneWinCount = playerOneWinCount + winCount;
-        let winCount2 = winSet[2];
-        playerTwoWinCount = playerTwoWinCount + winCount2;
-        let winningProfile = winSet[3];
-        let winContent = document.createTextNode(winCount);
-        let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
-        removeChildren(winElement)
-        winElement.appendChild(winContent);
-        winningProfile.appendChild(winElement);
         return winSet
 
     };
@@ -265,16 +271,7 @@ function winChecker(boardArray, moveCount, playerOneWins, playerTwoWins) {
         });
 
         let winSet = [true, 0, 1, playerTwoProfile];
-        let winCount = winSet[1];
-        playerOneWinCount = playerOneWinCount + winCount;
-        let winCount2 = winSet[2];
-        playerTwoWinCount = playerTwoWinCount + winCount2;
-        let winningProfile = winSet[3];
-        let winContent = document.createTextNode(winCount);
-        let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
-        removeChildren(winElement)
-        winElement.appendChild(winContent);
-        winningProfile.appendChild(winElement);
+
         return winSet
 
     };
