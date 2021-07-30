@@ -104,16 +104,7 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
                 let winSet = newMove(newIndexValue);
                 let winResult = winSet[0];
                 if (winResult) {
-                    let winCount = winSet[1];
-                    playerOneWinCount = playerOneWinCount + winCount;
-                    let winCount2 = winSet[2];
-                    playerTwoWinCount = playerTwoWinCount + winCount2;
-                    let winningProfile = winSet[3];
-                    let winContent = document.createTextNode(winCount);
-                    let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
-                    removeChildren(winElement)
-                    winElement.appendChild(winContent);
-                    winningProfile.appendChild(winElement);
+
                     
                     let blankElements = document.getElementsByClassName("blank");
                     for (y = 0; y < blankElements.length; y++) {
@@ -207,8 +198,8 @@ function winChecker(boardArray, moveCount, playerOneWins, playerTwoWins) {
     if (scenarioX.winner === true) {
         let messageContainer = elementBuilder("div", "message-container", mainContainer);
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
-        let winContent = document.createTextNode("Player 1 has won!");
-        winMessage.appendChild(winContent);
+        let winMessageContent = document.createTextNode("Player 1 has won!");
+        winMessage.appendChild(winMessageContent);
         let newPlayButton = playButton(messageContainer);
         let playButtonElement = newPlayButton[0];
         playButtonElement.addEventListener('click', () => {
@@ -232,6 +223,16 @@ function winChecker(boardArray, moveCount, playerOneWins, playerTwoWins) {
         });
 
         let winSet = [true, 1, 0, playerOneProfile]
+        let winCount = winSet[1];
+        playerOneWinCount = playerOneWinCount + winCount;
+        let winCount2 = winSet[2];
+        playerTwoWinCount = playerTwoWinCount + winCount2;
+        let winningProfile = winSet[3];
+        let winContent = document.createTextNode(winCount);
+        let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
+        removeChildren(winElement)
+        winElement.appendChild(winContent);
+        winningProfile.appendChild(winElement);
         return winSet
 
     };
@@ -239,8 +240,8 @@ function winChecker(boardArray, moveCount, playerOneWins, playerTwoWins) {
     if (scenarioO.winner === true) {
         let messageContainer = elementBuilder("div", "message-container", mainContainer);
         let winMessage = elementBuilder("h2", "win-result", messageContainer);
-        let winContent = document.createTextNode("Player 2 has won!");
-        winMessage.appendChild(winContent);
+        let winMessageContent = document.createTextNode("Player 2 has won!");
+        winMessage.appendChild(winMessageContent);
         let newPlayButton = playButton(messageContainer);
         let playButtonElement = newPlayButton[0];
         playButtonElement.addEventListener('click', () => {
@@ -264,6 +265,16 @@ function winChecker(boardArray, moveCount, playerOneWins, playerTwoWins) {
         });
 
         let winSet = [true, 0, 1, playerTwoProfile];
+        let winCount = winSet[1];
+        playerOneWinCount = playerOneWinCount + winCount;
+        let winCount2 = winSet[2];
+        playerTwoWinCount = playerTwoWinCount + winCount2;
+        let winningProfile = winSet[3];
+        let winContent = document.createTextNode(winCount);
+        let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
+        removeChildren(winElement)
+        winElement.appendChild(winContent);
+        winningProfile.appendChild(winElement);
         return winSet
 
     };
