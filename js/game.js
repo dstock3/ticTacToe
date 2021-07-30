@@ -100,12 +100,15 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
         playerOneWinCount = playerOneWinCount + winCount;
         let winCount2 = winSet[2];
         playerTwoWinCount = playerTwoWinCount + winCount2;
-        let winningProfile = winSet[3];
-        let winContent = document.createTextNode(winCount);
-        let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
-        removeChildren(winElement)
-        winElement.appendChild(winContent);
-        winningProfile.appendChild(winElement);
+        if (winResult) {
+            let winningProfile = winSet[3];
+            let winContent = document.createTextNode(winCount);
+            let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
+            removeChildren(winElement)
+            winElement.appendChild(winContent);
+            winningProfile.appendChild(winElement);
+        }
+
         return winResult
     }
 
