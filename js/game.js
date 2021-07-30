@@ -96,11 +96,11 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
     
     const scoreKeeper = (winSet, playerOneWinCount, playerTwoWinCount) => {
         let winResult = winSet[0];
-        let winCount = winSet[1];
-        playerOneWinCount = playerOneWinCount + winCount;
-        let winCount2 = winSet[2];
-        playerTwoWinCount = playerTwoWinCount + winCount2;
         if (winResult) {
+            let winCount = winSet[1];
+            playerOneWinCount = playerOneWinCount + winCount;
+            let winCount2 = winSet[2];
+            playerTwoWinCount = playerTwoWinCount + winCount2;
             let winningProfile = winSet[3];
             let winContent = document.createTextNode(winCount);
             let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
@@ -123,14 +123,11 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
                 let winResult = scoreKeeper(winSet, playerOneWinCount, playerTwoWinCount);
                 
                 if (winResult) {
-
-                    
                     let blankElements = document.getElementsByClassName("blank");
                     for (y = 0; y < blankElements.length; y++) {
+                        console.log(blankElements[y])
                         blankElements[y].classList.remove("blank")
-                        gameSpaces[y] = "void";
-                        //reviseSpaceArray(gameSpaces, y, "void");
-                        console.log(gameSpaces)
+                        blankElements[y].classList.add("void")
                     }
                 };
             });
