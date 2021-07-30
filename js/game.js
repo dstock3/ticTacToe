@@ -127,6 +127,9 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
         let newIndexValue = i;
         let spaceElement = elementBuilder("div", "space", parent);
         spaceElement.setAttribute("id", `position-${newIndexValue}`);
+        if (gameSpaces[i] === "void") {
+            spaceElement.classList.add("void");
+        };
         if (gameSpaces[i] === null) {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', function executeMove() {
