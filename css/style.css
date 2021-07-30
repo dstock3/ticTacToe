@@ -32,6 +32,10 @@ body {
 
 }
 
+.score-number {
+    font-size: 3em;
+}
+
 #player-one {
     position: relative;
     right: 15%;
