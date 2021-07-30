@@ -89,8 +89,8 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
         let flowArray = moveArray[0];
         let move = moveArray[1];
         let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
-        let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
-        let winSet = winChecker(newBoardObj.gameSpaces, moveCount, playerOneWinCount, playerTwoWinCount);
+        let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount, playerOneWinCount, playerTwoWinCount);
+        let winSet = winChecker(newBoardObj.gameSpaces, moveCount, newBoardObj.playerOneWinCount, newBoardObj.playerTwoWinCount);
         return winSet
         }
     
@@ -124,11 +124,14 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
                 
                 if (winResult) {
                     let blankElements = document.getElementsByClassName("blank");
+                    console.log(blankElements);
+
+                    /*
                     for (y = 0; y < blankElements.length; y++) {
                         console.log(blankElements[y])
                         blankElements[y].classList.remove("blank")
                         blankElements[y].classList.add("void")
-                    }
+                    }*/
                 };
             });
             spaceElementArray.push(spaceElement);
