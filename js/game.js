@@ -25,6 +25,9 @@ const playerOneContent = document.createTextNode("Player One:");
 playerOneHeader.appendChild(playerOneContent);
 const playerOneScoreCount = elementBuilder("div", "score-number", playerOneProfile)
 playerOneScoreCount.setAttribute("id", "player-one-score");
+const playerOneInitialScore = document.createTextNode("0");
+playerOneScoreCount.appendChild(playerOneInitialScore);
+
 
 const mainContainer = elementBuilder("div", "main-container", masterContainer);
 const gameContainer = elementBuilder("div", "game-container", mainContainer);
@@ -36,6 +39,8 @@ const playerTwoContent = document.createTextNode("Player Two:");
 playerTwoHeader.appendChild(playerTwoContent);
 const playerTwoScoreCount = elementBuilder("div", "score-number", playerTwoProfile)
 playerTwoScoreCount.setAttribute("id", "player-two-score");
+const playerTwoInitialScore = document.createTextNode("0");
+playerTwoScoreCount.appendChild(playerTwoInitialScore);
  
 //Gameboard Setup
 
@@ -94,12 +99,14 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
     const scoreKeeper = (winSet) => {
         let winResult = winSet[0];
         if (winResult) {
-            let winCount = 0;
-            let loseCount = 0;
+            
+            let loseCount = document.getElementById();
             
             let winningProfile = winSet[1];
+            
             let winContent = document.createTextNode(winCount + 1);
             let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
+            let winCount = winElement
             removeChildren(winElement)
             winElement.appendChild(winContent);
             winningProfile.appendChild(winElement);
