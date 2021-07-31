@@ -91,18 +91,25 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
         return winSet
         }
     
-    const scoreKeeper = (winSet, playerOneWinCount, playerTwoWinCount) => {
+    const scoreKeeper = (winSet) => {
         let winResult = winSet[0];
         if (winResult) {
-            let winCount = 1;
+            let winCount = 0;
             let loseCount = 0;
-
+            
             let winningProfile = winSet[1];
             let winContent = document.createTextNode(winCount + 1);
             let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
             removeChildren(winElement)
             winElement.appendChild(winContent);
             winningProfile.appendChild(winElement);
+
+            let losingProfile = winSet[2];
+            let loseContent = document.createTextNode(loseCount);
+            let loseElement = document.getElementById(`${losingProfile.id}` + `-score`);
+            removeChildren(loseElement)
+            loseElement.appendChild(loseContent);
+            losingProfile.appendChild(loseElement);
         }
 
         return winResult
@@ -127,7 +134,7 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', function executeMove() {
                 let winSet = newMove(newIndexValue);
-                let winResult = scoreKeeper(winSet, playerOneWinCount, playerTwoWinCount);
+                let winResult = scoreKeeper(winSet);
                 noMoreMoves(winResult, gameSpaces);
             });
             spaceElementArray.push(spaceElement);
@@ -237,7 +244,7 @@ function winChecker(boardArray, moveCount) {
             let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
 
-        return [true, playerOneProfile]
+        return [true, playerOneProfile, playerTwoProfile]
 
     };
 
@@ -268,7 +275,7 @@ function winChecker(boardArray, moveCount) {
             let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
 
-        return [true, playerTwoProfile]
+        return [true, playerTwoProfile, playerOneProfile]
 
     };
 
