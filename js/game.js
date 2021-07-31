@@ -119,17 +119,19 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
         return winResult
     }
 
-    const noMoreMoves = (winResult, gameSpaces) => {
+    const noMoreMoves = (winResult, gameSpaces, moveFunction) => {
         if (winResult) {
             for (i = 0; i < gameSpaces.length; i++) {
                 if (gameSpaces[i] === null) {
                     gameSpaces[i] = "void";
+                    let spaceElements = document.getElementsByClassName("blank");
+                    console.log(spaceElements)
+                    spaceElements[i].removeEventListener('click', moveFunction);
                 }
             }
         }
     };  
 
-    
     for (i = 0; i < gameSpaces.length; i++) {
         let newIndexValue = i;
         let spaceElement = elementBuilder("div", "space", parent);
@@ -139,7 +141,7 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
             spaceElement.addEventListener('click', function executeMove() {
                 let winSet = newMove(newIndexValue);
                 let winResult = scoreKeeper(winSet);
-                noMoreMoves(winResult, gameSpaces);
+                noMoreMoves(winResult, gameSpaces, executeMove);
             });
             spaceElementArray.push(spaceElement);
         } else if (gameSpaces[i] === X) {
