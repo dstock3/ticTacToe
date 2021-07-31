@@ -98,8 +98,10 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
         let winResult = winSet[0];
         if (winResult) {
             let winCount = winSet[1];
+            console.log("player 1: "  + winCount)
             playerOneWinCount = playerOneWinCount + winCount;
             let winCount2 = winSet[2];
+            console.log("player 2: " + winCount2)
             playerTwoWinCount = playerTwoWinCount + winCount2;
             let winningProfile = winSet[3];
             let winContent = document.createTextNode(winCount);
@@ -111,25 +113,22 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount, playerOneWinCoun
 
         return winResult
     }
-    
+
     const noMoreMoves = (winResult, gameSpaces) => {
         if (winResult) {
             for (i = 0; i < gameSpaces.length; i++) {
                 if (gameSpaces[i] === null) {
                     gameSpaces[i] = "void";
-                    console.log(gameSpaces)
                 }
             }
         }
     };  
 
+    
     for (i = 0; i < gameSpaces.length; i++) {
         let newIndexValue = i;
         let spaceElement = elementBuilder("div", "space", parent);
         spaceElement.setAttribute("id", `position-${newIndexValue}`);
-        if (gameSpaces[i] === "void") {
-            spaceElement.classList.add("void");
-        };
         if (gameSpaces[i] === null) {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', function executeMove() {
