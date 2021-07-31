@@ -94,13 +94,10 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
     const scoreKeeper = (winSet, playerOneWinCount, playerTwoWinCount) => {
         let winResult = winSet[0];
         if (winResult) {
-            let winCount = winSet[1];
-            console.log("player 1: "  + winCount)
-            playerOneWinCount = playerOneWinCount + winCount;
-            let winCount2 = winSet[2];
-            console.log("player 2: " + winCount2)
-            playerTwoWinCount = playerTwoWinCount + winCount2;
-            let winningProfile = winSet[3];
+            let winCount = 1;
+            let loseCount = 0;
+
+            let winningProfile = winSet[1];
             let winContent = document.createTextNode(winCount + 1);
             let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
             removeChildren(winElement)
@@ -240,7 +237,7 @@ function winChecker(boardArray, moveCount) {
             let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
 
-        return true
+        return [true, playerOneProfile]
 
     };
 
@@ -271,7 +268,7 @@ function winChecker(boardArray, moveCount) {
             let newGame = gameBoard(spaces, gameContainer, flowArray, initialMoveCount);
         });
 
-        return true
+        return [true, playerTwoProfile]
 
     };
 
