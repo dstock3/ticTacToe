@@ -28,7 +28,6 @@ playerOneScoreCount.setAttribute("id", "player-one-score");
 const playerOneInitialScore = document.createTextNode("0");
 playerOneScoreCount.appendChild(playerOneInitialScore);
 
-
 const mainContainer = elementBuilder("div", "main-container", masterContainer);
 const gameContainer = elementBuilder("div", "game-container", mainContainer);
 
@@ -100,20 +99,18 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
         let winResult = winSet[0];
         if (winResult) {
             
-            let loseCount = document.getElementById();
-            
             let winningProfile = winSet[1];
-            
-            let winContent = document.createTextNode(winCount + 1);
             let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
-            let winCount = winElement
+            let winCount = parseInt(winElement.innerHTML);
+            let winContent = document.createTextNode(winCount + 1);
             removeChildren(winElement)
             winElement.appendChild(winContent);
             winningProfile.appendChild(winElement);
 
             let losingProfile = winSet[2];
-            let loseContent = document.createTextNode(loseCount);
             let loseElement = document.getElementById(`${losingProfile.id}` + `-score`);
+            let loseCount = parseInt(loseElement.innerHTML);
+            let loseContent = document.createTextNode(loseCount);
             removeChildren(loseElement)
             loseElement.appendChild(loseContent);
             losingProfile.appendChild(loseElement);
