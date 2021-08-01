@@ -90,8 +90,10 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
         let flowArray = moveArray[0];
         let move = moveArray[1];
         let newSpaceArray = reviseSpaceArray(gameSpaces, newIndexValue, move);
+        let winSet = winChecker(newSpaceArray, moveCount);
+
         let newBoardObj = gameBoard(newSpaceArray, parent, flowArray, moveCount);
-        let winSet = winChecker(newBoardObj.gameSpaces, moveCount);
+        
         return winSet
         }
     
