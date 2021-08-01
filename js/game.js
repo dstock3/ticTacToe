@@ -98,7 +98,7 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
     const scoreKeeper = (winSet) => {
         let winResult = winSet[0];
         if (winResult) {
-            
+
             let winningProfile = winSet[1];
             let winElement = document.getElementById(`${winningProfile.id}` + `-score`);
             let winCount = parseInt(winElement.innerHTML);
@@ -129,6 +129,14 @@ const gameBoard = (gameSpaces, parent, newflowArray, moveCount) => {
         let newIndexValue = i;
         let spaceElement = elementBuilder("div", "space", parent);
         spaceElement.setAttribute("id", `position-${newIndexValue}`);
+        if (gameSpaces[i] === "void") {
+            spaceElement.classList.add("void");
+            spaceElement.addEventListener('click', function executeMove() {
+                console.log("Is this thing working?")
+            });
+            spaceElementArray.push(spaceElement);
+        }
+
         if (gameSpaces[i] === null) {
             spaceElement.classList.add("blank");
             spaceElement.addEventListener('click', function executeMove() {
